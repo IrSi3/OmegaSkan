@@ -1,129 +1,179 @@
 <!DOCTYPE html>
 <html lang="pl">
-
-<!------------------------------------------------------------>
+  <!------------------------------------------------------------>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>OmegaSkan - badania</title>
     <!-- Style -->
-    <link rel="stylesheet" href="css/badania.css">
+    <link rel="stylesheet" href="css/badania.css" />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <!-- Google Fonts Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"/>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
     <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
     <!-- Script -->
     <script src="js/badania.js"></script>
   </head>
-<!------------------------------------------------------------>
+  <!------------------------------------------------------------>
 
-<!------------------------------------------------------------>
+  <!------------------------------------------------------------>
   <body>
-
     <header>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-md fixed-top navbar-scroll shadow-0">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+          <!-- Navbar brand -->
+          <a class="navbar-brand px-2" href="index.html">
+            <img
+              src="img/icon.svg"
+              height="30"
+              alt="OmegaSkan Logo"
+              loading="lazy"
+            />
+          </a>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-md fixed-top navbar-scroll shadow-0">
-      <!-- Container wrapper -->
-      <div class="container-fluid">
-      
-        <!-- Navbar brand -->
-        <a class="navbar-brand px-2" href="index.html">
-          <img
-            src="img/icon.svg"
-            height="30"
-            alt="OmegaSkan Logo"
-            loading="lazy"
-          />
-        </a>
+          <!-- Toggle button -->
+          <button
+            class="navbar-toggler ps-0"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarOmegaSkan"
+            aria-controls="navbarOmegaSkan"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="d-flex justify-content-start align-items-center">
+              <i class="fas fa-bars"></i>
+            </span>
+          </button>
 
-        <!-- Toggle button -->
-        <button class="navbar-toggler ps-0"
-          type="button"
-          data-mdb-toggle="collapse"
-          data-mdb-target="#navbarOmegaSkan"
-          aria-controls="navbarOmegaSkan"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-        <span class="d-flex justify-content-start align-items-center">
-          <i class="fas fa-bars"></i>
-        </span>  
-        </button>
+          <!-- Collapsible wrapper -->
+          <div
+            class="collapse navbar-collapse text-center"
+            id="navbarOmegaSkan"
+          >
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-lg-0 py-2" id="navigation-1">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Strona główna</a>
+              </li>
+              <!-- Split exam button -->
+              <li class="nav-item">
+                <div class="btn-group">
+                  <button type="button" class="btn">
+                    <a
+                      class="nav-link active btn-exam"
+                      aria-current="page"
+                      href="badania.html"
+                      >Badania</a
+                    >
+                  </button>
+                  <button
+                    type="button"
+                    class="btn dropdown-toggle dropdown-toggle-split"
+                    data-mdb-toggle="dropdown"
+                    aria-expanded="false"
+                    data-mdb-offset="0,15"
+                  ></button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" href="badania.html#MRI-section"
+                        >Rezonans magnetyczny</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="badania.html#CT-section"
+                        >Tomografia komputerowa</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="badania.html#X-RAY-section"
+                        >Rentgenografia</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="badania.html#MMG-section"
+                        >Mammografia</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="badania.html#USG-section"
+                        >Ultrasonografia</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="cennik.html">Cennik</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="kontakt.html">Kontakt</a>
+              </li>
+            </ul>
+            <!-- Left links -->
 
-        <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse text-center" id="navbarOmegaSkan">
-          
-          <!-- Left links -->
-          <ul class="navbar-nav me-auto mb-lg-0 py-2" id="navigation-1">
-            <li class="nav-item">
-              <a class="nav-link" href="index.html">Strona główna</a>
-            </li>
-            <!-- Split exam button -->
-            <li class="nav-item">
-              <div class="btn-group">
-                <button type="button" class="btn"><a class="nav-link active btn-exam" aria-current="page" 
-                  href="badania.html">Badania</a></button>
-                <button type="button" class="btn dropdown-toggle dropdown-toggle-split"
-                  data-mdb-toggle="dropdown" aria-expanded="false" data-mdb-offset="0,15">
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="badania.html#MRI-section">Rezonans magnetyczny</a></li>
-                  <li><a class="dropdown-item" href="badania.html#CT-section">Tomografia komputerowa</a></li>
-                  <li><a class="dropdown-item" href="badania.html#X-RAY-section">Rentgenografia</a></li>
-                  <li><a class="dropdown-item" href="badania.html#MMG-section">Mammografia</a></li>
-                  <li><a class="dropdown-item" href="badania.html#USG-section">Ultrasonografia</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="cennik.html">Cennik</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="kontakt.html">Kontakt</a>
-            </li>
-          </ul>
-          <!-- Left links -->
-
-          <!-- Right links -->
-          <ul class="navbar-nav flex-row justify-content-center justify-content-md-end">
-            <!-- Icons -->
-            <li class="nav-item">
-              <a class="nav-link px-2" href="kontakt.html">
-                <i class="fas fa-phone"></i> 666 666 666
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link px-2" href="https://www.instagram.com"
-                target="_blank">
-                <i class="fab fa-instagram"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link px-2" href="https://www.facebook.com"
-                target="_blank">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-            </li>
-          </ul>
-          <!-- Right links -->
-
+            <!-- Right links -->
+            <ul
+              class="navbar-nav flex-row justify-content-center justify-content-md-end"
+            >
+              <!-- Icons -->
+              <li class="nav-item">
+                <a class="nav-link px-2" href="kontakt.html">
+                  <i class="fas fa-phone"></i> 666 666 666
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link px-2"
+                  href="https://www.instagram.com"
+                  target="_blank"
+                >
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link px-2"
+                  href="https://www.facebook.com"
+                  target="_blank"
+                >
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+            </ul>
+            <!-- Right links -->
+          </div>
+          <!-- Collapsible wrapper -->
         </div>
-        <!-- Collapsible wrapper -->
-      </div>
-      <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
 
       <!-- Background image -->
-      <div id="intro-main" class="p-5 text-center bg-image" style="background-image: url(img/bg-photo.png);">
+      <div
+        id="intro-main"
+        class="p-5 text-center bg-image"
+        style="background-image: url(img/bg-photo.png)"
+      >
         <div class="mask">
           <div class="d-flex justify-content-left align-items-end h-100">
             <div class="text-white">
               <!-- Heading oferta badań -->
-              <h1 class="display-1 text-left px-5 py-3 mb-5" id=exam-heading>
+              <h1 class="display-1 text-left px-5 py-3 mb-5" id="exam-heading">
                 Oferta badań
               </h1>
               <!-- Heading oferta badań -->
@@ -137,93 +187,124 @@
     <main>
       <!-- MRI photo + description -->
       <section class="section" id="MRI-section">
-      <div class="row m-0 d-flex align-items-center" style="width: 100vw;">
-
-        <div id="exam-icon-heading" class="text-center align-items-center d-flex justify-content-center p-5">
-          <img id="examination-icon" class="m-0 p-2" src="img/mri-icon.svg">
-          <h2 id="examination-heading" class="display-4 resp-font-3 m-0 p-2">REZONANS MAGNETYCZNY</h2>
-        </div>
-
-        <!-- MRI photo column -->        
-        <div class="col-lg-6">
-          <div class="mx-auto" id="examination-photo-column"> 
-            <div class="image-container">
-              <img class="img-fluid rounded-9" src="img/mri-spine.jpg" alt="MRI lumbar spine photo">
-              <div class="image-overlay">
-                <p class="overlay-text">
-                  Rezonans magnetyczny to zaawansowana technika obrazowania medycznego, 
-                  która wykorzystuje silne pole magnetyczne i fale radiowe do uzyskania 
-                  szczegółowych obrazów wnętrza ciała. Jest powszechnie 
-                  stosowany w diagnostyce medycznej, umożliwiając identyfikację i ocenę różnych 
-                  schorzeń oraz planowanie leczenia.                
-                </p>
-              </div>
-            </div>
+        <div class="row m-0 d-flex align-items-center" style="width: 100vw">
+          <div
+            id="exam-icon-heading"
+            class="text-center align-items-center d-flex justify-content-center p-5"
+          >
+            <img id="examination-icon" class="m-0 p-2" src="img/mri-icon.svg" />
+            <h2 id="examination-heading" class="display-4 resp-font-3 m-0 p-2">
+              REZONANS MAGNETYCZNY
+            </h2>
           </div>
-        </div>
-        <!-- MRI photo column -->
-        
-        <!-- MRI description column -->
-        <div class="col-lg-6 p-5">
-          <div class="p-1">
-            <!-- Phone number -->
-            <div class="my-3">
-              <h2 class="resp-font-4">
-                W naszej ofercie znajdą Państwo badania MR m.in.:
-              </h2>
-              <ul class="p-4 resp-font-5">
-                <li>kręgosłupa (szyjnego, piersiowego, lędźwiowego)</li>
-                <li>głowy (mózgowia, twarzoczaszki, oczodołów, przysadki)</li>
-                <li>stawów (kolana, barku, łokcia)</li>
-                <li>kończyn dolnych i górnych</li>
-                <li>jamy brzusznej (w tym cholangiografię)</li>
-                <li>miednicy</li>
-              </ul>
-              <div class="text-center p-5" style="background-color: #071924;">
-                <h4 class="resp-font-6">
-                Rezerwacja terminu badania:
-                </h4>
-                <div class="d-flex align-items-center resp-font-6 my-3 justify-content-center">
-                  <i class="fas fa-phone fa-fw"></i>
-                  <p style="display: inline-block; margin-left: 15px; margin-bottom: 0px;">
-                    <span style="display: block">666 666 666</span> 
+
+          <!-- MRI photo column -->
+          <div class="col-lg-6">
+            <div class="mx-auto" id="examination-photo-column">
+              <div class="image-container">
+                <img
+                  class="img-fluid rounded-9"
+                  src="img/mri-spine.jpg"
+                  alt="MRI lumbar spine photo"
+                />
+                <div class="image-overlay">
+                  <p class="overlay-text">
+                    Rezonans magnetyczny to zaawansowana technika obrazowania
+                    medycznego, która wykorzystuje silne pole magnetyczne i fale
+                    radiowe do uzyskania szczegółowych obrazów wnętrza ciała.
+                    Jest powszechnie stosowany w diagnostyce medycznej,
+                    umożliwiając identyfikację i ocenę różnych schorzeń oraz
+                    planowanie leczenia.
                   </p>
                 </div>
-                <a class="btn btn-outline-light btn-lg my-2 mx-2" id="button" href="kontakt.html"
-                  role="button" >Kontakt
-                </a>
-                <a class="btn btn-outline-light btn-lg my-2 mx-2" id="button" href="cennik.html"
-                  role="button">Cennik
-                </a>
               </div>
             </div>
           </div>
+          <!-- MRI photo column -->
+
+          <!-- MRI description column -->
+          <div class="col-lg-6 p-5">
+            <div class="p-1">
+              <!-- Phone number -->
+              <div class="my-3">
+                <h2 class="resp-font-4">
+                  W naszej ofercie znajdą Państwo badania MR m.in.:
+                </h2>
+                <ul class="p-4 resp-font-5">
+                  <li>kręgosłupa (szyjnego, piersiowego, lędźwiowego)</li>
+                  <li>głowy (mózgowia, twarzoczaszki, oczodołów, przysadki)</li>
+                  <li>stawów (kolana, barku, łokcia)</li>
+                  <li>kończyn dolnych i górnych</li>
+                  <li>jamy brzusznej (w tym cholangiografię)</li>
+                  <li>miednicy</li>
+                </ul>
+                <div class="text-center p-5" style="background-color: #071924">
+                  <h4 class="resp-font-6">Rezerwacja terminu badania:</h4>
+                  <div
+                    class="d-flex align-items-center resp-font-6 my-3 justify-content-center"
+                  >
+                    <i class="fas fa-phone fa-fw"></i>
+                    <p
+                      style="
+                        display: inline-block;
+                        margin-left: 15px;
+                        margin-bottom: 0px;
+                      "
+                    >
+                      <span style="display: block">666 666 666</span>
+                    </p>
+                  </div>
+                  <a
+                    class="btn btn-outline-light btn-lg my-2 mx-2"
+                    id="button"
+                    href="kontakt.html"
+                    role="button"
+                    >Kontakt
+                  </a>
+                  <a
+                    class="btn btn-outline-light btn-lg my-2 mx-2"
+                    id="button"
+                    href="cennik.html"
+                    role="button"
+                    >Cennik
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- MRI description column -->
         </div>
-        <!-- MRI description column -->
-      </div>
       </section>
       <!-- MRI photo + description -->
 
       <!-- CT photo + description -->
       <section class="section" id="CT-section">
-        <div class="row m-0 d-flex align-items-center" style="width: 100vw;">
-  
-          <div id="exam-icon-heading" class="text-center align-items-center d-flex justify-content-center p-5">
-            <img id="examination-icon" class="m-0 p-2" src="img/ct-icon.svg">
-            <h2 id="examination-heading" class="display-4 resp-font-3 m-0 p-2">TOMOGRAFIA KOMPUTEROWA</h2>
+        <div class="row m-0 d-flex align-items-center" style="width: 100vw">
+          <div
+            id="exam-icon-heading"
+            class="text-center align-items-center d-flex justify-content-center p-5"
+          >
+            <img id="examination-icon" class="m-0 p-2" src="img/ct-icon.svg" />
+            <h2 id="examination-heading" class="display-4 resp-font-3 m-0 p-2">
+              TOMOGRAFIA KOMPUTEROWA
+            </h2>
           </div>
-  
-          <!-- CT photo column -->        
+
+          <!-- CT photo column -->
           <div class="col-lg-6">
-            <div class="mx-auto" id="examination-photo-column"> 
+            <div class="mx-auto" id="examination-photo-column">
               <div class="image-container">
-                <img class="img-fluid rounded-9" src="img/ct-body.jpg" alt="CT chest and abdomen photo">
+                <img
+                  class="img-fluid rounded-9"
+                  src="img/ct-body.jpg"
+                  alt="CT chest and abdomen photo"
+                />
                 <div class="image-overlay">
                   <p class="overlay-text">
-                    Tomografia komputerowa to technika obrazowania medycznego, 
+                    Tomografia komputerowa to technika obrazowania medycznego,
                     wykorzystująca promieniowanie jonizujące w celu uzyskania
-                    dokładnych obrazów przekrojowych ciała. Jest metodą często 
-                    stosowaną w diagnostyce zmian kostnych, ale można za jej 
+                    dokładnych obrazów przekrojowych ciała. Jest metodą często
+                    stosowaną w diagnostyce zmian kostnych, ale można za jej
                     pomocą uzyskać również obrazy tkanek miękkich.
                   </p>
                 </div>
@@ -231,7 +312,7 @@
             </div>
           </div>
           <!-- CT photo column -->
-          
+
           <!-- CT description column -->
           <div class="col-lg-6 p-5">
             <div class="p-1">
@@ -248,21 +329,35 @@
                   <li>miednicy</li>
                   <li>układu kostno-stawowego (nadgarstka, łokcia, kolana)</li>
                 </ul>
-                <div class="text-center p-5" style="background-color: #071924;">
-                  <h4 class="resp-font-6">
-                  Rezerwacja terminu badania:
-                  </h4>
-                  <div class="d-flex align-items-center resp-font-6 my-3 justify-content-center">
+                <div class="text-center p-5" style="background-color: #071924">
+                  <h4 class="resp-font-6">Rezerwacja terminu badania:</h4>
+                  <div
+                    class="d-flex align-items-center resp-font-6 my-3 justify-content-center"
+                  >
                     <i class="fas fa-phone fa-fw"></i>
-                    <p style="display: inline-block; margin-left: 15px; margin-bottom: 0px;">
-                      <span style="display: block">666 666 666</span> 
+                    <p
+                      style="
+                        display: inline-block;
+                        margin-left: 15px;
+                        margin-bottom: 0px;
+                      "
+                    >
+                      <span style="display: block">666 666 666</span>
                     </p>
                   </div>
-                  <a class="btn btn-outline-light btn-lg my-2 mx-2" id="button" href="kontakt.html"
-                    role="button" >Kontakt
+                  <a
+                    class="btn btn-outline-light btn-lg my-2 mx-2"
+                    id="button"
+                    href="kontakt.html"
+                    role="button"
+                    >Kontakt
                   </a>
-                  <a class="btn btn-outline-light btn-lg my-2 mx-2" id="button" href="cennik.html"
-                    role="button">Cennik
+                  <a
+                    class="btn btn-outline-light btn-lg my-2 mx-2"
+                    id="button"
+                    href="cennik.html"
+                    role="button"
+                    >Cennik
                   </a>
                 </div>
               </div>
@@ -270,37 +365,50 @@
           </div>
           <!-- CT description column -->
         </div>
-        </section>
-        <!-- CT photo + description -->
+      </section>
+      <!-- CT photo + description -->
 
-        <!-- X-ray photo + description -->
+      <!-- X-ray photo + description -->
       <section class="section" id="X-RAY-section">
-        <div class="row m-0 d-flex align-items-center" style="width: 100vw;">
-  
-          <div id="exam-icon-heading" class="text-center align-items-center d-flex justify-content-center p-5">
-            <img id="examination-icon" class="m-0 p-2" src="img/x-ray-icon.svg">
-            <h2 id="examination-heading" class="display-4 resp-font-3 m-0 p-2">RENTGENOGRAFIA</h2>
+        <div class="row m-0 d-flex align-items-center" style="width: 100vw">
+          <div
+            id="exam-icon-heading"
+            class="text-center align-items-center d-flex justify-content-center p-5"
+          >
+            <img
+              id="examination-icon"
+              class="m-0 p-2"
+              src="img/x-ray-icon.svg"
+            />
+            <h2 id="examination-heading" class="display-4 resp-font-3 m-0 p-2">
+              RENTGENOGRAFIA
+            </h2>
           </div>
-  
-          <!-- X-ray photo column -->        
+
+          <!-- X-ray photo column -->
           <div class="col-lg-6">
-            <div class="mx-auto" id="examination-photo-column"> 
+            <div class="mx-auto" id="examination-photo-column">
               <div class="image-container">
-                <img class="img-fluid rounded-9" src="img/x-ray-chest.jpg" alt="X-ray chest photo">
+                <img
+                  class="img-fluid rounded-9"
+                  src="img/x-ray-chest.jpg"
+                  alt="X-ray chest photo"
+                />
                 <div class="image-overlay">
                   <p class="overlay-text">
-                    Rentgenografia to jedna z podstawowych technik obrazowania medycznego, 
-                    wykorzystująca promieniowanie jonizujące w celu uzyskania
-                    dwuwymiarowych obrazów ciała. Jest metodą najczęściej 
-                    stosowaną w diagnostyce zmian i złamań kości, ale można za jej
-                    pomocą uwidocznić również niektóre tkanki miękkie.
+                    Rentgenografia to jedna z podstawowych technik obrazowania
+                    medycznego, wykorzystująca promieniowanie jonizujące w celu
+                    uzyskania dwuwymiarowych obrazów ciała. Jest metodą
+                    najczęściej stosowaną w diagnostyce zmian i złamań kości,
+                    ale można za jej pomocą uwidocznić również niektóre tkanki
+                    miękkie.
                   </p>
                 </div>
               </div>
             </div>
           </div>
           <!-- X-ray photo column -->
-          
+
           <!-- X-ray description column -->
           <div class="col-lg-6 p-5">
             <div class="p-1">
@@ -315,23 +423,39 @@
                   <li>jamy brzusznej</li>
                   <li>miednicy</li>
                   <li>kręgosłupa (szyjnego, piersiowego, lędźwiowego)</li>
-                  <li>stawów (barkowych, biodrowych, kolanowych, łokciowych)</li>
+                  <li>
+                    stawów (barkowych, biodrowych, kolanowych, łokciowych)
+                  </li>
                 </ul>
-                <div class="text-center p-5" style="background-color: #071924;">
-                  <h4 class="resp-font-6">
-                  Rezerwacja terminu badania:
-                  </h4>
-                  <div class="d-flex align-items-center resp-font-6 my-3 justify-content-center">
+                <div class="text-center p-5" style="background-color: #071924">
+                  <h4 class="resp-font-6">Rezerwacja terminu badania:</h4>
+                  <div
+                    class="d-flex align-items-center resp-font-6 my-3 justify-content-center"
+                  >
                     <i class="fas fa-phone fa-fw"></i>
-                    <p style="display: inline-block; margin-left: 15px; margin-bottom: 0px;">
-                      <span style="display: block">666 666 666</span> 
+                    <p
+                      style="
+                        display: inline-block;
+                        margin-left: 15px;
+                        margin-bottom: 0px;
+                      "
+                    >
+                      <span style="display: block">666 666 666</span>
                     </p>
                   </div>
-                  <a class="btn btn-outline-light btn-lg my-2 mx-2" id="button" href="kontakt.html"
-                    role="button" >Kontakt
+                  <a
+                    class="btn btn-outline-light btn-lg my-2 mx-2"
+                    id="button"
+                    href="kontakt.html"
+                    role="button"
+                    >Kontakt
                   </a>
-                  <a class="btn btn-outline-light btn-lg my-2 mx-2" id="button" href="cennik.html"
-                    role="button">Cennik
+                  <a
+                    class="btn btn-outline-light btn-lg my-2 mx-2"
+                    id="button"
+                    href="cennik.html"
+                    role="button"
+                    >Cennik
                   </a>
                 </div>
               </div>
@@ -339,157 +463,217 @@
           </div>
           <!-- X-ray description column -->
         </div>
-        </section>
-        <!-- X-ray photo + description -->
+      </section>
+      <!-- X-ray photo + description -->
 
-        <!-- Mammography photo + description -->
-        <section class="section" id="MMG-section">
-          <div class="row m-0 d-flex align-items-center" style="width: 100vw;">
-    
-            <div id="exam-icon-heading" class="text-center align-items-center d-flex justify-content-center p-5">
-              <img id="examination-icon" class="m-0 p-2" src="img/mmg-icon.svg">
-              <h2 id="examination-heading" class="display-4 resp-font-3 m-0 p-2">MAMMOGRAFIA</h2>
+      <!-- Mammography photo + description -->
+      <section class="section" id="MMG-section">
+        <div class="row m-0 d-flex align-items-center" style="width: 100vw">
+          <div
+            id="exam-icon-heading"
+            class="text-center align-items-center d-flex justify-content-center p-5"
+          >
+            <img id="examination-icon" class="m-0 p-2" src="img/mmg-icon.svg" />
+            <h2 id="examination-heading" class="display-4 resp-font-3 m-0 p-2">
+              MAMMOGRAFIA
+            </h2>
+          </div>
+
+          <!-- Mammography photo column -->
+          <div class="col-lg-6">
+            <div class="mx-auto" id="examination-photo-column">
+              <div class="image-container">
+                <img
+                  class="img-fluid rounded-9"
+                  src="img/mmg.jpg"
+                  alt="Mammography photo"
+                />
+                <div class="image-overlay">
+                  <p class="overlay-text">
+                    Mammografia to metoda obrazowania piersi, wykorzystująca
+                    promieniowanie rentgenowskie do wczesnej identyfikacji zmian
+                    nowotworowych. Jest to podstawowe badanie do wykrywania raka
+                    piersi i może pomóc we wczesnym rozpoznaniu tej choroby,
+                    zwiększając szanse na skuteczne leczenie i przeżycie.
+                  </p>
+                </div>
+              </div>
             </div>
-    
-            <!-- Mammography photo column -->        
-            <div class="col-lg-6">
-              <div class="mx-auto" id="examination-photo-column"> 
-                <div class="image-container">
-                  <img class="img-fluid rounded-9" src="img/mmg.jpg" alt="Mammography photo">
-                  <div class="image-overlay">
-                    <p class="overlay-text">
-                      Mammografia to metoda obrazowania piersi, wykorzystująca promieniowanie
-                      rentgenowskie do wczesnej identyfikacji zmian nowotworowych. Jest to 
-                      podstawowe badanie do wykrywania raka piersi i może pomóc we wczesnym
-                      rozpoznaniu tej choroby, zwiększając szanse na skuteczne leczenie i 
-                      przeżycie.
+          </div>
+          <!-- Mammography photo column -->
+
+          <!-- Mammography description column -->
+          <div class="col-lg-6 p-5">
+            <div class="p-1">
+              <!-- Phone number -->
+              <div class="my-3">
+                <h2 class="resp-font-4">
+                  W naszej ofercie znajdą Państwo badania MMG m.in.:
+                </h2>
+                <ul class="p-4 resp-font-5">
+                  <li>mammografię jednej piersi</li>
+                  <li>mammografię obu piersi</li>
+                  <li>mammografię celowaną</li>
+                </ul>
+                <div class="text-center p-5" style="background-color: #071924">
+                  <h4 class="resp-font-6">Rezerwacja terminu badania:</h4>
+                  <div
+                    class="d-flex align-items-center resp-font-6 my-3 justify-content-center"
+                  >
+                    <i class="fas fa-phone fa-fw"></i>
+                    <p
+                      style="
+                        display: inline-block;
+                        margin-left: 15px;
+                        margin-bottom: 0px;
+                      "
+                    >
+                      <span style="display: block">666 666 666</span>
                     </p>
                   </div>
+                  <a
+                    class="btn btn-outline-light btn-lg my-2 mx-2"
+                    id="button"
+                    href="kontakt.html"
+                    role="button"
+                    >Kontakt
+                  </a>
+                  <a
+                    class="btn btn-outline-light btn-lg my-2 mx-2"
+                    id="button"
+                    href="cennik.html"
+                    role="button"
+                    >Cennik
+                  </a>
                 </div>
               </div>
             </div>
-            <!-- Mammography photo column -->
-            
-            <!-- Mammography description column -->
-            <div class="col-lg-6 p-5">
-              <div class="p-1">
-                <!-- Phone number -->
-                <div class="my-3">
-                  <h2 class="resp-font-4">
-                    W naszej ofercie znajdą Państwo badania MMG m.in.:
-                  </h2>
-                  <ul class="p-4 resp-font-5">
-                    <li>mammografię jednej piersi</li>
-                    <li>mammografię obu piersi</li>
-                    <li>mammografię celowaną</li>
-                  </ul>
-                  <div class="text-center p-5" style="background-color: #071924;">
-                    <h4 class="resp-font-6">
-                    Rezerwacja terminu badania:
-                    </h4>
-                    <div class="d-flex align-items-center resp-font-6 my-3 justify-content-center">
-                      <i class="fas fa-phone fa-fw"></i>
-                      <p style="display: inline-block; margin-left: 15px; margin-bottom: 0px;">
-                        <span style="display: block">666 666 666</span> 
-                      </p>
-                    </div>
-                    <a class="btn btn-outline-light btn-lg my-2 mx-2" id="button" href="kontakt.html"
-                      role="button" >Kontakt
-                    </a>
-                    <a class="btn btn-outline-light btn-lg my-2 mx-2" id="button" href="cennik.html"
-                      role="button">Cennik
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- Mammography description column -->
           </div>
-          </section>
-          <!-- Mammography photo + description -->
+          <!-- Mammography description column -->
+        </div>
+      </section>
+      <!-- Mammography photo + description -->
 
-          <!-- Ultrasonography photo + description -->
-          <section class="section" id="USG-section">
-            <div class="row m-0 d-flex align-items-center" style="width: 100vw;">
-      
-              <div id="exam-icon-heading" class="text-center align-items-center d-flex justify-content-center p-5">
-                <img id="examination-icon" class="m-0 p-2 me-md-4" src="img/usg-icon.svg">
-                <h2 id="examination-heading" class="display-4 resp-font-3 m-0 p-2">ULTRASONOGRAFIA</h2>
-              </div>
-      
-              <!-- Ultrasonography photo column -->        
-              <div class="col-lg-6">
-                <div class="mx-auto" id="examination-photo-column"> 
-                  <div class="image-container">
-                    <img class="img-fluid rounded-9" src="img/usg-abdomen.jpg" alt="Ultrasonography photo">
-                    <div class="image-overlay">
-                      <p class="overlay-text">
-                        Ultrasonografia to nieinwazyjna metoda diagnostyczna wykorzystująca
-                        fale dźwiękowe o wysokiej częstotliwości w celu obrazowania 
-                        wnętrza ciała. Badanie USG pozwala na ocenę narządów wewnętrznych,
-                        a w związku z jego bezpieczeństwem jest szeroko wykorzystywane 
-                        w diagnostyce prenatalnej.
-                      </p>
-                    </div>
-                  </div>
+      <!-- Ultrasonography photo + description -->
+      <section class="section" id="USG-section">
+        <div class="row m-0 d-flex align-items-center" style="width: 100vw">
+          <div
+            id="exam-icon-heading"
+            class="text-center align-items-center d-flex justify-content-center p-5"
+          >
+            <img
+              id="examination-icon"
+              class="m-0 p-2 me-md-4"
+              src="img/usg-icon.svg"
+            />
+            <h2 id="examination-heading" class="display-4 resp-font-3 m-0 p-2">
+              ULTRASONOGRAFIA
+            </h2>
+          </div>
+
+          <!-- Ultrasonography photo column -->
+          <div class="col-lg-6">
+            <div class="mx-auto" id="examination-photo-column">
+              <div class="image-container">
+                <img
+                  class="img-fluid rounded-9"
+                  src="img/usg-abdomen.jpg"
+                  alt="Ultrasonography photo"
+                />
+                <div class="image-overlay">
+                  <p class="overlay-text">
+                    Ultrasonografia to nieinwazyjna metoda diagnostyczna
+                    wykorzystująca fale dźwiękowe o wysokiej częstotliwości w
+                    celu obrazowania wnętrza ciała. Badanie USG pozwala na ocenę
+                    narządów wewnętrznych, a w związku z jego bezpieczeństwem
+                    jest szeroko wykorzystywane w diagnostyce prenatalnej.
+                  </p>
                 </div>
               </div>
-              <!-- Ultrasonography photo column -->
-              
-              <!-- Ultrasonography description column -->
-              <div class="col-lg-6 p-5">
-                <div class="p-1">
-                  <!-- Phone number -->
-                  <div class="my-3">
-                    <h2 class="resp-font-4">
-                      W naszej ofercie znajdą Państwo badania USG m.in.:
-                    </h2>
-                    <ul class="p-4 resp-font-5">
-                      <li>piersi</li>
-                      <li>jamy brzusznej</li>
-                      <li>narządów miednicy (układu moczowego, moszny, prostaty, narządów rodnych)</li>
-                      <li>szyi (tarczycy)</li>
-                      <li>serca</li>
-                      <li>dopplerowskie</li>
-                      <li>stawów</li>
-                    </ul>
-                    <div class="text-center p-5" style="background-color: #071924;">
-                      <h4 class="resp-font-6">
-                      Rezerwacja terminu badania:
-                      </h4>
-                      <div class="d-flex align-items-center resp-font-6 my-3 justify-content-center">
-                        <i class="fas fa-phone fa-fw"></i>
-                        <p style="display: inline-block; margin-left: 15px; margin-bottom: 0px;">
-                          <span style="display: block">666 666 666</span> 
-                        </p>
-                      </div>
-                      <a class="btn btn-outline-light btn-lg my-2 mx-2" id="button" href="kontakt.html"
-                        role="button" >Kontakt
-                      </a>
-                      <a class="btn btn-outline-light btn-lg my-2 mx-2" id="button" href="cennik.html"
-                        role="button">Cennik
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Ultrasonography description column -->
             </div>
-            </section>
-            <!-- Ultrasonography photo + description -->
+          </div>
+          <!-- Ultrasonography photo column -->
+
+          <!-- Ultrasonography description column -->
+          <div class="col-lg-6 p-5">
+            <div class="p-1">
+              <!-- Phone number -->
+              <div class="my-3">
+                <h2 class="resp-font-4">
+                  W naszej ofercie znajdą Państwo badania USG m.in.:
+                </h2>
+                <ul class="p-4 resp-font-5">
+                  <li>piersi</li>
+                  <li>jamy brzusznej</li>
+                  <li>
+                    narządów miednicy (układu moczowego, moszny, prostaty,
+                    narządów rodnych)
+                  </li>
+                  <li>szyi (tarczycy)</li>
+                  <li>serca</li>
+                  <li>dopplerowskie</li>
+                  <li>stawów</li>
+                </ul>
+                <div class="text-center p-5" style="background-color: #071924">
+                  <h4 class="resp-font-6">Rezerwacja terminu badania:</h4>
+                  <div
+                    class="d-flex align-items-center resp-font-6 my-3 justify-content-center"
+                  >
+                    <i class="fas fa-phone fa-fw"></i>
+                    <p
+                      style="
+                        display: inline-block;
+                        margin-left: 15px;
+                        margin-bottom: 0px;
+                      "
+                    >
+                      <span style="display: block">666 666 666</span>
+                    </p>
+                  </div>
+                  <a
+                    class="btn btn-outline-light btn-lg my-2 mx-2"
+                    id="button"
+                    href="kontakt.html"
+                    role="button"
+                    >Kontakt
+                  </a>
+                  <a
+                    class="btn btn-outline-light btn-lg my-2 mx-2"
+                    id="button"
+                    href="cennik.html"
+                    role="button"
+                    >Cennik
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Ultrasonography description column -->
+        </div>
+      </section>
+      <!-- Ultrasonography photo + description -->
     </main>
 
     <!-- Footer -->
     <footer>
-      <section id="footer-1" style="width: 100vw;">
-        <div class="row m-0 d-flex align-items-center" style="width: 100vw;" id="row-footer">
+      <section id="footer-1" style="width: 100vw">
+        <div
+          class="row m-0 d-flex align-items-center"
+          style="width: 100vw"
+          id="row-footer"
+        >
           <!-- Left footer - OmegaSkan logo + navigation -->
           <div class="col-lg-4 p-5 text-center">
             <div id="left-footer">
               <!-- OmegaSkan logo -->
               <div>
-                <a class="px-2" href="index.html" >
-                  <img src="img/omegaskan_baner2.png" alt="OmegaSkan Logo" id="omegaskan-banner-footer" loading="lazy"/>
+                <a class="px-2" href="index.html">
+                  <img
+                    src="img/omegaskan_baner2.png"
+                    alt="OmegaSkan Logo"
+                    id="omegaskan-banner-footer"
+                    loading="lazy"
+                  />
                 </a>
               </div>
 
@@ -497,25 +681,31 @@
               <div>
                 <ul class="navbar-nav me-auto mb-lg-0" id="navigation-2">
                   <li class="nav-item" id="nav-item-2">
-                    <a class="nav-link active" aria-current="page" id="nav-link-2" href="index.html">Strona główna</a>
+                    <a
+                      class="nav-link active"
+                      aria-current="page"
+                      id="nav-link-2"
+                      href="index.html"
+                      >Strona główna</a
+                    >
                   </li>
-                  <span>
-                    |
-                  </span>
+                  <span> | </span>
                   <li class="nav-item" id="nav-item-2">
-                    <a class="nav-link" id="nav-link-2" href="badania.html">Badania</a>
+                    <a class="nav-link" id="nav-link-2" href="badania.html"
+                      >Badania</a
+                    >
                   </li>
-                  <span>
-                    |
-                  </span>
+                  <span> | </span>
                   <li class="nav-item" id="nav-item-2">
-                    <a class="nav-link" id="nav-link-2" href="cennik.html">Cennik</a>
+                    <a class="nav-link" id="nav-link-2" href="cennik.html"
+                      >Cennik</a
+                    >
                   </li>
-                  <span>
-                    |
-                  </span>
+                  <span> | </span>
                   <li class="nav-item" id="nav-item-2">
-                    <a class="nav-link" id="nav-link-2" href="kontakt.html">Kontakt</a>
+                    <a class="nav-link" id="nav-link-2" href="kontakt.html"
+                      >Kontakt</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -524,20 +714,34 @@
           <!-- Left footer - banner + navigation + copyright -->
 
           <!-- Center footer - address + phone number + email address -->
-            <div class="col-lg-4 p-5 text-left align-items-center d-flex justify-content-center">
-              <div id="center-footer">
-                <!-- Phone number -->
+          <div
+            class="col-lg-4 p-5 text-left align-items-center d-flex justify-content-center"
+          >
+            <div id="center-footer">
+              <!-- Phone number -->
               <div class="d-flex align-items-center my-3 resp-font-2">
                 <i class="fas fa-phone fa-fw"></i>
-                <p style="display: inline-block; margin-left: 15px; margin-bottom: 0px;">
-                  <span style="display: block">666 666 666</span> 
+                <p
+                  style="
+                    display: inline-block;
+                    margin-left: 15px;
+                    margin-bottom: 0px;
+                  "
+                >
+                  <span style="display: block">666 666 666</span>
                 </p>
               </div>
 
               <!-- Email address -->
               <div class="d-flex align-items-center my-3 resp-font-2">
                 <i class="fas fa-envelope fa-fw"></i>
-                <p style="display: inline-block; margin-left: 15px; margin-bottom: 0px;">
+                <p
+                  style="
+                    display: inline-block;
+                    margin-left: 15px;
+                    margin-bottom: 0px;
+                  "
+                >
                   <span style="display: block">omegaskandiagnostyka@op.pl</span>
                 </p>
               </div>
@@ -545,22 +749,40 @@
               <!-- Address -->
               <div class="d-flex align-items-center my-3 resp-font-2">
                 <i class="fas fa-map fa-fw"></i>
-                <p style="display: inline-block; margin-left: 15px; margin-bottom: 0px;">
-                  <span style="display: block;">ul. Chmielna 4</span> 
-                  <span style="display: block;">Lublin 20-079</span> 
+                <p
+                  style="
+                    display: inline-block;
+                    margin-left: 15px;
+                    margin-bottom: 0px;
+                  "
+                >
+                  <span style="display: block">ul. Chmielna 4</span>
+                  <span style="display: block">Lublin 20-079</span>
                 </p>
               </div>
 
               <!-- Opening hours -->
               <div class="d-flex align-items-center my-3 resp-font-2">
                 <i class="fas fa-clock fa-fw"></i>
-                <p style="display: inline-block; margin-left: 15px; margin-bottom: 0px;">
-                  <span style="display: block">poniedziałek - piątek:
-                  <span style="margin-left: 15px;">7.00 - 19.00</span></span> 
-                  <span style="display: block">sobota:
-                  <span style="margin-left: 15px;">8.00 - 16.00</span></span> 
-                  <span style="display: block">niedziela:
-                  <span style="margin-left: 15px;">nieczynne</span></span> 
+                <p
+                  style="
+                    display: inline-block;
+                    margin-left: 15px;
+                    margin-bottom: 0px;
+                  "
+                >
+                  <span style="display: block"
+                    >poniedziałek - piątek:
+                    <span style="margin-left: 15px">7.00 - 19.00</span></span
+                  >
+                  <span style="display: block"
+                    >sobota:
+                    <span style="margin-left: 15px">8.00 - 16.00</span></span
+                  >
+                  <span style="display: block"
+                    >niedziela:
+                    <span style="margin-left: 15px">nieczynne</span></span
+                  >
                 </p>
               </div>
             </div>
@@ -568,27 +790,39 @@
           <!-- Center footer - address + phone number + email address -->
 
           <!-- Right footer - About OmegaSkan + social media links -->
-          <div class="col-lg-4 p-5 text-center align-items-center d-flex justify-content-center">
+          <div
+            class="col-lg-4 p-5 text-center align-items-center d-flex justify-content-center"
+          >
             <div id="right-footer">
               <!-- About OmegaSkan -->
               <h3 class="pb-3" id="heading-font">
                 Twoje profesjonalne centrum diagnostyczne
               </h3>
               <p>
-                W OmegaSkan wykonujemy kompleksowe usługi diagnostyczne - w tym tomografię komputerową, rezonans magnetyczny, rentgenografię, ultrasonografię oraz mammografię
+                W OmegaSkan wykonujemy kompleksowe usługi diagnostyczne - w tym
+                tomografię komputerową, rezonans magnetyczny, rentgenografię,
+                ultrasonografię oraz mammografię
               </p>
 
               <!-- Social media links -->
               <ul class="navbar-nav flex-row justify-content-center">
                 <li class="nav-item">
-                  <a class="nav-link px-2 fs-3" id="nav-link-3" href="https://www.instagram.com"
-                    target="_blank">
+                  <a
+                    class="nav-link px-2 fs-3"
+                    id="nav-link-3"
+                    href="https://www.instagram.com"
+                    target="_blank"
+                  >
                     <i class="fab fa-instagram"></i>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link px-2 fs-3" id="nav-link-3" href="https://www.facebook.com"
-                    target="_blank">
+                  <a
+                    class="nav-link px-2 fs-3"
+                    id="nav-link-3"
+                    href="https://www.facebook.com"
+                    target="_blank"
+                  >
                     <i class="fab fa-facebook-f"></i>
                   </a>
                 </li>
@@ -597,21 +831,23 @@
           </div>
           <!-- Right footer - About us + social media links -->
 
-        <!-- Copyright and author -->
+          <!-- Copyright and author -->
           <div>
-            <p class="text-center text-muted">OmegaSkan © 2026 <br> Autor: Ireneusz Siwek </p>
+            <p class="text-center text-muted">
+              OmegaSkan © 2026 <br />
+              Autor: Ireneusz Siwek
+            </p>
           </div>
-        <!-- Copyright and author -->
+          <!-- Copyright and author -->
         </div>
       </section>
     </footer>
     <!-- Footer -->
-
 
     <!-- MDB -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript"></script>
   </body>
-<!------------------------------------------------------------>
+  <!------------------------------------------------------------>
 </html>
