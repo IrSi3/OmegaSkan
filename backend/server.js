@@ -16,7 +16,7 @@ app.use(express.json());
 // Połączenie z MongoDB Atlas
 const uri = process.env.MONGO_URI; // To zdefiniujesz w pliku .env
 mongoose
-  .connect(uri)
+  .connect(uri, { dbName: "omegaskan_db" })
   .then(() => console.log("Połączono z MongoDB Atlas"))
   .catch((err) => console.log("Błąd połączenia:", err));
 
@@ -24,16 +24,18 @@ app.use(express.static(frontendPath));
 
 // Schemat dla Treści Stron
 const trescSchema = new mongoose.Schema({
-  strona: String, // np. "index", "badania"
-  sekcja: String, // np. "about_us", "intro"
-  naglowek: String,
-  tresc: String,
+  strona: String,
+  sekcja: {
+    tytul: String,
+    podtytul: String,
+    tresc: String,
+  },
 });
-const Tresc = mongoose.model("Tresc", trescSchema);
+const Tresc = mongoose.model("Tresc", trescSchema, "pages_content");
 
 // Schemat dla Danych Kontaktowych
 const kontaktSchema = new mongoose.Schema({
-  typ: String, // "glowny"
+  typ: String,
   telefon: String,
   email: String,
   adres: {
@@ -46,13 +48,15 @@ const kontaktSchema = new mongoose.Schema({
     sob: String,
     nd: String,
   },
+  mapa: String,
 });
-const Kontakt = mongoose.model("Kontakt", kontaktSchema);
+const Kontakt = mongoose.model("Kontakt", kontaktSchema, "contact_info");
 
 // Pobierz treści dla konkretnej strony
+
 app.get("/api/tresci", async (req, res) => {
   try {
-    const { strona } = req.query; // Pobiera parametr z adresu URL
+    const { strona } = req.query;
     const query = strona ? { strona: strona } : {};
     const tresci = await Tresc.find(query);
     res.json(tresci);

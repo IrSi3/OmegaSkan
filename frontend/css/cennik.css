@@ -308,3 +308,15 @@ font-size: 15px;
     font-family: "Times New Roman", Times, serif;
     color: rgb(79, 161, 157);
   }
+
+    /* Baza dancyh */
+.db-telefon, .db-email, .db-adres-ulica, .db-adres-miasto, 
+.db-godziny-pn, .db-godziny-sob, .db-godziny-nd, 
+.footer-tytul, .footer-podtytul {
+    color: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    font-size: inherit;
+    text-decoration: inherit;
+    background: transparent;
+}

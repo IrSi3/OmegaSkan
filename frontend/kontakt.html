@@ -133,7 +133,15 @@
               <!-- Icons -->
               <li class="nav-item">
                 <a class="nav-link px-2" href="kontakt.html">
-                  <i class="fas fa-phone"></i> 666 666 666
+                  <i class="fas fa-phone"></i>&nbsp;
+                  <samp
+                    class="db-telefon"
+                    style="
+                      color: inherit;
+                      font-weight: inherit;
+                      font-family: inherit;
+                    ">
+                  </samp>
                 </a>
               </li>
               <li class="nav-item">
@@ -385,7 +393,7 @@
                 <ul class="navbar-nav me-auto mb-lg-0" id="navigation-2">
                   <li class="nav-item" id="nav-item-2">
                     <a
-                      class="nav-link active"
+                      class="nav-link"
                       aria-current="page"
                       id="nav-link-2"
                       href="index.html"
@@ -406,7 +414,7 @@
                   </li>
                   <span> | </span>
                   <li class="nav-item" id="nav-item-2">
-                    <a class="nav-link" id="nav-link-2" href="kontakt.html"
+                    <a class="nav-link active" id="nav-link-2" href="kontakt.html"
                       >Kontakt</a
                     >
                   </li>
@@ -424,51 +432,47 @@
               <!-- Phone number -->
               <div class="d-flex align-items-center my-3 resp-font-2">
                 <i class="fas fa-phone fa-fw"></i>
-                <p
-                  style="
+                <p style="
                     display: inline-block;
                     margin-left: 15px;
                     margin-bottom: 0px;
                   "
                 >
-                  <span style="display: block">666 666 666</span>
+                  <span style="display: block" class="db-telefon"></span>
                 </p>
               </div>
 
               <!-- Email address -->
               <div class="d-flex align-items-center my-3 resp-font-2">
                 <i class="fas fa-envelope fa-fw"></i>
-                <p
-                  style="
+                <p style="
                     display: inline-block;
                     margin-left: 15px;
                     margin-bottom: 0px;
                   "
                 >
-                  <span style="display: block">omegaskandiagnostyka@op.pl</span>
+                  <span style="display: block" class="db-email"></span>
                 </p>
               </div>
 
               <!-- Address -->
               <div class="d-flex align-items-center my-3 resp-font-2">
                 <i class="fas fa-map fa-fw"></i>
-                <p
-                  style="
+                <p style="
                     display: inline-block;
                     margin-left: 15px;
                     margin-bottom: 0px;
                   "
                 >
-                  <span style="display: block">ul. Chmielna 4</span>
-                  <span style="display: block">Lublin 20-079</span>
+                  <span style="display: block" class="db-adres-ulica"></span>
+                  <span style="display: block" class="db-adres-miasto"></span>
                 </p>
               </div>
 
               <!-- Opening hours -->
               <div class="d-flex align-items-center my-3 resp-font-2">
                 <i class="fas fa-clock fa-fw"></i>
-                <p
-                  style="
+                <p style="
                     display: inline-block;
                     margin-left: 15px;
                     margin-bottom: 0px;
@@ -476,36 +480,27 @@
                 >
                   <span style="display: block"
                     >poniedziałek - piątek:
-                    <span style="margin-left: 15px">7.00 - 19.00</span></span
-                  >
+                    <span style="margin-left: 15px" class="db-godziny-pn"></span></span>
                   <span style="display: block"
                     >sobota:
-                    <span style="margin-left: 15px">8.00 - 16.00</span></span
-                  >
+                    <span style="margin-left: 15px" class="db-godziny-sob"></span></span>
                   <span style="display: block"
                     >niedziela:
-                    <span style="margin-left: 15px">nieczynne</span></span
-                  >
+                    <span style="margin-left: 15px" class="db-godziny-nd"></span></span>
                 </p>
               </div>
             </div>
           </div>
           <!-- Center footer - address + phone number + email address -->
 
-          <!-- Right footer - About OmegaSkan + social media links -->
+           <!-- Right footer - About OmegaSkan + social media links -->
           <div
             class="col-lg-4 p-5 text-center align-items-center d-flex justify-content-center"
           >
             <div id="right-footer">
               <!-- About OmegaSkan -->
-              <h3 class="pb-3" id="heading-font">
-                Twoje profesjonalne centrum diagnostyczne
-              </h3>
-              <p>
-                W OmegaSkan wykonujemy kompleksowe usługi diagnostyczne - w tym
-                tomografię komputerową, rezonans magnetyczny, rentgenografię,
-                ultrasonografię oraz mammografię
-              </p>
+              <h3 class="pb-3" id="heading-font"><span class="footer-tytul"></span></h3>
+              <p class="footer-tresc"></p>
 
               <!-- Social media links -->
               <ul class="navbar-nav flex-row justify-content-center">
