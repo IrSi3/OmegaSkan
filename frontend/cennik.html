@@ -1,129 +1,179 @@
 <!DOCTYPE html>
 <html lang="pl">
-
-<!------------------------------------------------------------>
+  <!------------------------------------------------------------>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>OmegaSkan - cennik</title>
     <!-- Style -->
-    <link rel="stylesheet" href="css/cennik.css">
+    <link rel="stylesheet" href="css/cennik.css" />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <!-- Google Fonts Roboto -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"/>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap"
+    />
     <!-- MDB -->
     <link rel="stylesheet" href="css/mdb.min.css" />
     <!-- Script -->
     <script src="js/cennik.js"></script>
   </head>
-<!------------------------------------------------------------>
+  <!------------------------------------------------------------>
 
-<!------------------------------------------------------------>
+  <!------------------------------------------------------------>
   <body>
-
     <header>
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-md fixed-top navbar-scroll shadow-0">
+        <!-- Container wrapper -->
+        <div class="container-fluid">
+          <!-- Navbar brand -->
+          <a class="navbar-brand px-2" href="index.html">
+            <img
+              src="img/icon.svg"
+              height="30"
+              alt="OmegaSkan Logo"
+              loading="lazy"
+            />
+          </a>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-md fixed-top navbar-scroll shadow-0">
-      <!-- Container wrapper -->
-      <div class="container-fluid">
-      
-        <!-- Navbar brand -->
-        <a class="navbar-brand px-2" href="index.html">
-          <img
-            src="img/icon.svg"
-            height="30"
-            alt="OmegaSkan Logo"
-            loading="lazy"
-          />
-        </a>
+          <!-- Toggle button -->
+          <button
+            class="navbar-toggler ps-0"
+            type="button"
+            data-mdb-toggle="collapse"
+            data-mdb-target="#navbarOmegaSkan"
+            aria-controls="navbarOmegaSkan"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="d-flex justify-content-start align-items-center">
+              <i class="fas fa-bars"></i>
+            </span>
+          </button>
 
-        <!-- Toggle button -->
-        <button class="navbar-toggler ps-0"
-          type="button"
-          data-mdb-toggle="collapse"
-          data-mdb-target="#navbarOmegaSkan"
-          aria-controls="navbarOmegaSkan"
-          aria-expanded="false"
-          aria-label="Toggle navigation">
-        <span class="d-flex justify-content-start align-items-center">
-          <i class="fas fa-bars"></i>
-        </span>  
-        </button>
+          <!-- Collapsible wrapper -->
+          <div
+            class="collapse navbar-collapse text-center"
+            id="navbarOmegaSkan"
+          >
+            <!-- Left links -->
+            <ul class="navbar-nav me-auto mb-lg-0 py-2" id="navigation-1">
+              <li class="nav-item">
+                <a class="nav-link" href="index.html">Strona główna</a>
+              </li>
+              <!-- Split exam button -->
+              <li class="nav-item">
+                <div class="btn-group">
+                  <button type="button" class="btn">
+                    <a class="nav-link btn-exam" href="badania.html">Badania</a>
+                  </button>
+                  <button
+                    type="button"
+                    class="btn dropdown-toggle dropdown-toggle-split"
+                    data-mdb-toggle="dropdown"
+                    aria-expanded="false"
+                    data-mdb-offset="0,15"
+                  ></button>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item" href="badania.html#MRI-section"
+                        >Rezonans magnetyczny</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="badania.html#CT-section"
+                        >Tomografia komputerowa</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="badania.html#X-RAY-section"
+                        >Rentgenografia</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="badania.html#MMG-section"
+                        >Mammografia</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="badania.html#USG-section"
+                        >Ultrasonografia</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link active"
+                  aria-current="page"
+                  href="cennik.html"
+                  >Cennik
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="kontakt.html">Kontakt</a>
+              </li>
+            </ul>
+            <!-- Left links -->
 
-        <!-- Collapsible wrapper -->
-        <div class="collapse navbar-collapse text-center" id="navbarOmegaSkan">
-          
-          <!-- Left links -->
-          <ul class="navbar-nav me-auto mb-lg-0 py-2" id="navigation-1">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" 
-              href="index.html">Strona główna</a>
-            </li>
-            <!-- Split exam button -->
-            <li class="nav-item">
-              <div class="btn-group">
-                <button type="button" class="btn"><a class="nav-link btn-exam" href="badania.html">Badania</a></button>
-                <button type="button" class="btn dropdown-toggle dropdown-toggle-split"
-                  data-mdb-toggle="dropdown" aria-expanded="false" data-mdb-offset="0,15">
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="badania.html#MRI-section">Rezonans magnetyczny</a></li>
-                  <li><a class="dropdown-item" href="badania.html#CT-section">Tomografia komputerowa</a></li>
-                  <li><a class="dropdown-item" href="badania.html#X-RAY-section">Rentgenografia</a></li>
-                  <li><a class="dropdown-item" href="badania.html#MMG-section">Mammografia</a></li>
-                  <li><a class="dropdown-item" href="badania.html#USG-section">Ultrasonografia</a></li>
-                </ul>
-              </div>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="cennik.html">Cennik</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="kontakt.html">Kontakt</a>
-            </li>
-          </ul>
-          <!-- Left links -->
-
-          <!-- Right links -->
-          <ul class="navbar-nav flex-row justify-content-center justify-content-md-end">
-            <!-- Icons -->
-            <li class="nav-item">
-              <a class="nav-link px-2" href="kontakt.html">
-                <i class="fas fa-phone"></i> 666 666 666
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link px-2" href="https://www.instagram.com"
-                target="_blank">
-                <i class="fab fa-instagram"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link px-2" href="https://www.facebook.com"
-                target="_blank">
-                <i class="fab fa-facebook-f"></i>
-              </a>
-            </li>
-          </ul>
-          <!-- Right links -->
-
+            <!-- Right links -->
+            <ul
+              class="navbar-nav flex-row justify-content-center justify-content-md-end"
+            >
+              <!-- Icons -->
+              <li class="nav-item">
+                <a class="nav-link px-2" href="kontakt.html">
+                  <i class="fas fa-phone"></i> 666 666 666
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link px-2"
+                  href="https://www.instagram.com"
+                  target="_blank"
+                >
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link px-2"
+                  href="https://www.facebook.com"
+                  target="_blank"
+                >
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+              </li>
+            </ul>
+            <!-- Right links -->
+          </div>
+          <!-- Collapsible wrapper -->
         </div>
-        <!-- Collapsible wrapper -->
-      </div>
-      <!-- Container wrapper -->
-    </nav>
-    <!-- Navbar -->
+        <!-- Container wrapper -->
+      </nav>
+      <!-- Navbar -->
 
       <!-- Background image -->
-      <div id="intro-main" class="p-5 text-center bg-image" style="background-image: url(img/bg-photo.png);">
+      <div
+        id="intro-main"
+        class="p-5 text-center bg-image"
+        style="background-image: url(img/bg-photo.png)"
+      >
         <div class="mask">
           <div class="d-flex justify-content-left align-items-end h-100">
             <div class="text-white">
               <!-- Heading oferta badań -->
-              <h1 class="display-1 text-left px-5 py-3 mb-5" id=exam-heading>
+              <h1 class="display-1 text-left px-5 py-3 mb-5" id="exam-heading">
                 Cennik badań
               </h1>
               <!-- Heading oferta badań -->
@@ -137,22 +187,31 @@
     <main>
       <section class="section">
         <div id="prices">
-
-      
           <div class="accordion accordion-flush" id="accordion-exam-prices">
-
             <!-- MRI prices -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-heading-MRI">
-                <button class="accordion-button collapsed" type="button"
-                  data-mdb-toggle="collapse" data-mdb-target="#flush-collapseOne"
-                  aria-expanded="false" aria-controls="flush-collapseOne">
-                  <img id="examination-icon" class="m-0 me-3 p-2" src="img/mri-icon.svg">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-mdb-toggle="collapse"
+                  data-mdb-target="#flush-collapseOne"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseOne"
+                >
+                  <img
+                    id="examination-icon"
+                    class="m-0 me-3 p-2"
+                    src="img/mri-icon.svg"
+                  />
                   Cennik badań MR
                 </button>
               </h2>
-              <div id="flush-collapseOne" class="accordion-collapse collapse"
-                aria-labelledby="flush-headingOne">
+              <div
+                id="flush-collapseOne"
+                class="accordion-collapse collapse"
+                aria-labelledby="flush-headingOne"
+              >
                 <div class="accordion-body">
                   <table class="table">
                     <thead class="table-head align-middle">
@@ -167,7 +226,9 @@
                         <td class="text-center">530,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR naczyń mózgowych (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR naczyń mózgowych (bez kontrastu)
+                        </th>
                         <td class="text-center">650,00 zł</td>
                       </tr>
                       <tr>
@@ -183,7 +244,9 @@
                         <td class="text-center">680,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR przysadki mózgowej z kontrastem</th>
+                        <th scope="row">
+                          Badanie MR przysadki mózgowej z kontrastem
+                        </th>
                         <td class="text-center">680,00 zł</td>
                       </tr>
                       <tr>
@@ -191,47 +254,71 @@
                         <td class="text-center">500,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR kręgosłupa szyjnego (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR kręgosłupa szyjnego (bez kontrastu)
+                        </th>
                         <td class="text-center">530,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR kręgosłupa szyjnego z kontrastem</th>
+                        <th scope="row">
+                          Badanie MR kręgosłupa szyjnego z kontrastem
+                        </th>
                         <td class="text-center">710,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR kręgosłupa piersiowego (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR kręgosłupa piersiowego (bez kontrastu)
+                        </th>
                         <td class="text-center">530,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR kręgosłupa piersiowego z kontrastem</th>
+                        <th scope="row">
+                          Badanie MR kręgosłupa piersiowego z kontrastem
+                        </th>
                         <td class="text-center">710,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR kręgosłupa lędźwiowo-krzyżowego (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR kręgosłupa lędźwiowo-krzyżowego (bez
+                          kontrastu)
+                        </th>
                         <td class="text-center">530,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR kręgosłupa lędźwiowo-krzyżowego z kontrastem</th>
+                        <th scope="row">
+                          Badanie MR kręgosłupa lędźwiowo-krzyżowego z
+                          kontrastem
+                        </th>
                         <td class="text-center">710,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR dwóch odcinków kręgosłupa (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR dwóch odcinków kręgosłupa (bez kontrastu)
+                        </th>
                         <td class="text-center">930,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR dwóch odcinków kręgosłupa z kontrastem</th>
+                        <th scope="row">
+                          Badanie MR dwóch odcinków kręgosłupa z kontrastem
+                        </th>
                         <td class="text-center">1110,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR trzech odcinków kręgosłupa (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR trzech odcinków kręgosłupa (bez kontrastu)
+                        </th>
                         <td class="text-center">1430,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR trzech odcinków kręgosłupa z kontrastem</th>
+                        <th scope="row">
+                          Badanie MR trzech odcinków kręgosłupa z kontrastem
+                        </th>
                         <td class="text-center">1610,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR stawu ramiennego (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR stawu ramiennego (bez kontrastu)
+                        </th>
                         <td class="text-center">530,00 zł</td>
                       </tr>
                       <tr>
@@ -239,15 +326,21 @@
                         <td class="text-center">530,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR stawu łokciowego (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR stawu łokciowego (bez kontrastu)
+                        </th>
                         <td class="text-center">530,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR przedramienia (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR przedramienia (bez kontrastu)
+                        </th>
                         <td class="text-center">530,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR stawu nadgarstkowego (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR stawu nadgarstkowego (bez kontrastu)
+                        </th>
                         <td class="text-center">550,00 zł</td>
                       </tr>
                       <tr>
@@ -255,11 +348,15 @@
                         <td class="text-center">550,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR w obrębie kończyny górnej z kontrastem</th>
+                        <th scope="row">
+                          Badanie MR w obrębie kończyny górnej z kontrastem
+                        </th>
                         <td class="text-center">710,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR stawu biodrowego (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR stawu biodrowego (bez kontrastu)
+                        </th>
                         <td class="text-center">530,00 zł</td>
                       </tr>
                       <tr>
@@ -267,7 +364,9 @@
                         <td class="text-center">530,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR stawu kolanowego (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR stawu kolanowego (bez kontrastu)
+                        </th>
                         <td class="text-center">530,00 zł</td>
                       </tr>
                       <tr>
@@ -275,7 +374,9 @@
                         <td class="text-center">530,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR stawu skokowego (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR stawu skokowego (bez kontrastu)
+                        </th>
                         <td class="text-center">550,00 zł</td>
                       </tr>
                       <tr>
@@ -283,15 +384,21 @@
                         <td class="text-center">550,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR w obrębie kończyny dolnej z kontrastem</th>
+                        <th scope="row">
+                          Badanie MR w obrębie kończyny dolnej z kontrastem
+                        </th>
                         <td class="text-center">710,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR jamy brzusznej (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie MR jamy brzusznej (bez kontrastu)
+                        </th>
                         <td class="text-center">580,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR jamy brzusznej z kontrastem</th>
+                        <th scope="row">
+                          Badanie MR jamy brzusznej z kontrastem
+                        </th>
                         <td class="text-center">760,00 zł</td>
                       </tr>
                       <tr>
@@ -299,11 +406,17 @@
                         <td class="text-center">530,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR jamy brzusznej (bez kontrastu) + cholangiografia MR</th>
+                        <th scope="row">
+                          Badanie MR jamy brzusznej (bez kontrastu) +
+                          cholangiografia MR
+                        </th>
                         <td class="text-center">1120,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie MR jamy brzusznej z kontrastem + cholangiografia MR</th>
+                        <th scope="row">
+                          Badanie MR jamy brzusznej z kontrastem +
+                          cholangiografia MR
+                        </th>
                         <td class="text-center">1300,00 zł</td>
                       </tr>
                       <tr>
@@ -324,15 +437,27 @@
             <!-- CT prices -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-heading-CT">
-                <button class="accordion-button collapsed" type="button"
-                  data-mdb-toggle="collapse" data-mdb-target="#flush-collapseTwo"
-                  aria-expanded="false" aria-controls="flush-collapseTwo">
-                  <img id="examination-icon" class="m-0 me-3 p-2" src="img/ct-icon.svg">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-mdb-toggle="collapse"
+                  data-mdb-target="#flush-collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseTwo"
+                >
+                  <img
+                    id="examination-icon"
+                    class="m-0 me-3 p-2"
+                    src="img/ct-icon.svg"
+                  />
                   Cennik badań TK
                 </button>
               </h2>
-              <div id="flush-collapseTwo" class="accordion-collapse collapse"
-                aria-labelledby="flush-headingTwo">
+              <div
+                id="flush-collapseTwo"
+                class="accordion-collapse collapse"
+                aria-labelledby="flush-headingTwo"
+              >
                 <div class="accordion-body">
                   <table class="table">
                     <thead class="table-head align-middle">
@@ -375,11 +500,15 @@
                         <td class="text-center">350,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie TK twarzoczaszki (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie TK twarzoczaszki (bez kontrastu)
+                        </th>
                         <td class="text-center">300,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie TK twarzoczaszki z kontrastem</th>
+                        <th scope="row">
+                          Badanie TK twarzoczaszki z kontrastem
+                        </th>
                         <td class="text-center">400,00 zł</td>
                       </tr>
                       <tr>
@@ -391,11 +520,15 @@
                         <td class="text-center">400,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie TK jamy brzusznej (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie TK jamy brzusznej (bez kontrastu)
+                        </th>
                         <td class="text-center">350,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie TK jamy brzusznej z kontrastem</th>
+                        <th scope="row">
+                          Badanie TK jamy brzusznej z kontrastem
+                        </th>
                         <td class="text-center">450,00 zł</td>
                       </tr>
                       <tr>
@@ -407,19 +540,27 @@
                         <td class="text-center">450,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie TK jamy brzusznej i miednicy (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie TK jamy brzusznej i miednicy (bez kontrastu)
+                        </th>
                         <td class="text-center">520,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie TK jamy brzusznej i miednicy z kontrastem</th>
+                        <th scope="row">
+                          Badanie TK jamy brzusznej i miednicy z kontrastem
+                        </th>
                         <td class="text-center">650,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie TK klatki piersiowej (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie TK klatki piersiowej (bez kontrastu)
+                        </th>
                         <td class="text-center">350,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie TK klatki piersiowej z kontrastem</th>
+                        <th scope="row">
+                          Badanie TK klatki piersiowej z kontrastem
+                        </th>
                         <td class="text-center">450,00 zł</td>
                       </tr>
                       <tr>
@@ -427,23 +568,34 @@
                         <td class="text-center">350,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie TK kręgosłupa szyjnego (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie TK kręgosłupa szyjnego (bez kontrastu)
+                        </th>
                         <td class="text-center">320,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie TK kręgosłupa piersiowego (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie TK kręgosłupa piersiowego (bez kontrastu)
+                        </th>
                         <td class="text-center">320,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie TK kręgosłupa lędźwiowo-krzyżowego (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie TK kręgosłupa lędźwiowo-krzyżowego (bez
+                          kontrastu)
+                        </th>
                         <td class="text-center">320,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie TK dwóch odcinków kręgosłupa (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie TK dwóch odcinków kręgosłupa (bez kontrastu)
+                        </th>
                         <td class="text-center">500,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie TK trzech odcinków kręgosłupa (bez kontrastu)</th>
+                        <th scope="row">
+                          Badanie TK trzech odcinków kręgosłupa (bez kontrastu)
+                        </th>
                         <td class="text-center">700,00 zł</td>
                       </tr>
                     </tbody>
@@ -456,15 +608,27 @@
             <!-- X-RAY prices -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-heading-X-RAY">
-                <button class="accordion-button collapsed" type="button"
-                  data-mdb-toggle="collapse" data-mdb-target="#flush-collapseThree"
-                  aria-expanded="false" aria-controls="flush-collapseThree">
-                  <img id="examination-icon" class="m-0 me-3 p-2" src="img/x-ray-icon.svg">
-                    Cennik badań RTG
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-mdb-toggle="collapse"
+                  data-mdb-target="#flush-collapseThree"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseThree"
+                >
+                  <img
+                    id="examination-icon"
+                    class="m-0 me-3 p-2"
+                    src="img/x-ray-icon.svg"
+                  />
+                  Cennik badań RTG
                 </button>
               </h2>
-              <div id="flush-collapseThree" class="accordion-collapse collapse"
-                aria-labelledby="flush-headingThree">
+              <div
+                id="flush-collapseThree"
+                class="accordion-collapse collapse"
+                aria-labelledby="flush-headingThree"
+              >
                 <div class="accordion-body">
                   <table class="table">
                     <thead class="table-head align-middle">
@@ -495,7 +659,9 @@
                         <td class="text-center">60,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG klatki piersiowej PA i boczne</th>
+                        <th scope="row">
+                          Badanie RTG klatki piersiowej PA i boczne
+                        </th>
                         <td class="text-center">80,00 zł</td>
                       </tr>
                       <tr>
@@ -515,67 +681,108 @@
                         <td class="text-center">60,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG kości ramiennej AP i boczne</th>
+                        <th scope="row">
+                          Badanie RTG kości ramiennej AP i boczne
+                        </th>
                         <td class="text-center">80,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG nadgarstka PA i boczne lub porównawcze obu nadgarstków PA</th>
+                        <th scope="row">
+                          Badanie RTG nadgarstka PA i boczne lub porównawcze obu
+                          nadgarstków PA
+                        </th>
                         <td class="text-center">800,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG dłoni PA i skośne lub porównawcze obu dłoni PA</th>
+                        <th scope="row">
+                          Badanie RTG dłoni PA i skośne lub porównawcze obu
+                          dłoni PA
+                        </th>
                         <td class="text-center">80,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG jednego palca (kciuk, palce II,III,IV,V) PA i boczne</th>
+                        <th scope="row">
+                          Badanie RTG jednego palca (kciuk, palce II,III,IV,V)
+                          PA i boczne
+                        </th>
                         <td class="text-center">50,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG kości podudzia AP i boczne</th>
+                        <th scope="row">
+                          Badanie RTG kości podudzia AP i boczne
+                        </th>
                         <td class="text-center">80,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG kości udowej AP i bocznem</th>
+                        <th scope="row">
+                          Badanie RTG kości udowej AP i bocznem
+                        </th>
                         <td class="text-center">80,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG stopy AP i skośne/lub boczne lub porównawcze obu stóp AP</th>
+                        <th scope="row">
+                          Badanie RTG stopy AP i skośne/lub boczne lub
+                          porównawcze obu stóp AP
+                        </th>
                         <td class="text-center">80,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG kości piętowej boczne i/lub osiowe/th>
+                        <th scope="row">
+                          Badanie RTG kości piętowej boczne i/lub osiowe/th>
+                        </th>
                         <td class="text-center">60,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG jedngo odcinka kręgosłupa AP i boczne</th>
+                        <th scope="row">
+                          Badanie RTG jedngo odcinka kręgosłupa AP i boczne
+                        </th>
                         <td class="text-center">80,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG całego kręgosłupa (szyjny, piersiowy i lędźwiowy) AP i boczne</th>
+                        <th scope="row">
+                          Badanie RTG całego kręgosłupa (szyjny, piersiowy i
+                          lędźwiowy) AP i boczne
+                        </th>
                         <td class="text-center">180,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG jednego odcinka kręgosłupa skosy prawy i lewy</th>
+                        <th scope="row">
+                          Badanie RTG jednego odcinka kręgosłupa skosy prawy i
+                          lewy
+                        </th>
                         <td class="text-center">60,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG stawu łokciowego AP i boczne</th>
+                        <th scope="row">
+                          Badanie RTG stawu łokciowego AP i boczne
+                        </th>
                         <td class="text-center">70,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG stawu biodrowego AP i osiowe lub porównawcze obu stawów biodrowych AP</th>
+                        <th scope="row">
+                          Badanie RTG stawu biodrowego AP i osiowe lub
+                          porównawcze obu stawów biodrowych AP
+                        </th>
                         <td class="text-center">70,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG stawu barkowego AP i osiowe lub transtorakalne</th>
+                        <th scope="row">
+                          Badanie RTG stawu barkowego AP i osiowe lub
+                          transtorakalne
+                        </th>
                         <td class="text-center">70,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG stawu kolanowego AP i boczne lub porównawcze obu stawów kolanowych AP</th>
+                        <th scope="row">
+                          Badanie RTG stawu kolanowego AP i boczne lub
+                          porównawcze obu stawów kolanowych AP
+                        </th>
                         <td class="text-center">70,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Badanie RTG stawu skokowego AP i boczne</th>
+                        <th scope="row">
+                          Badanie RTG stawu skokowego AP i boczne
+                        </th>
                         <td class="text-center">70,00 zł</td>
                       </tr>
                     </tbody>
@@ -588,15 +795,27 @@
             <!-- MMG prices -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-heading-MMG">
-                <button class="accordion-button collapsed" type="button"
-                  data-mdb-toggle="collapse" data-mdb-target="#flush-collapseFour"
-                  aria-expanded="false" aria-controls="flush-collapseFour">
-                  <img id="examination-icon" class="m-0 me-3 p-2" src="img/mmg-icon.svg">
-                    Cennik badań MMG
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-mdb-toggle="collapse"
+                  data-mdb-target="#flush-collapseFour"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseFour"
+                >
+                  <img
+                    id="examination-icon"
+                    class="m-0 me-3 p-2"
+                    src="img/mmg-icon.svg"
+                  />
+                  Cennik badań MMG
                 </button>
               </h2>
-              <div id="flush-collapseFour" class="accordion-collapse collapse"
-                aria-labelledby="flush-headingFour">
+              <div
+                id="flush-collapseFour"
+                class="accordion-collapse collapse"
+                aria-labelledby="flush-headingFour"
+              >
                 <div class="accordion-body">
                   <table class="table">
                     <thead class="table-head align-middle">
@@ -628,15 +847,27 @@
             <!-- USG prices -->
             <div class="accordion-item">
               <h2 class="accordion-header" id="flush-heading-UAG">
-                <button class="accordion-button collapsed" type="button"
-                  data-mdb-toggle="collapse" data-mdb-target="#flush-collapseFive"
-                  aria-expanded="false" aria-controls="flush-collapseFive">
-                  <img id="examination-icon" class="m-0 me-3 p-2" src="img/usg-icon.svg">
-                    Cennik badań USG
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-mdb-toggle="collapse"
+                  data-mdb-target="#flush-collapseFive"
+                  aria-expanded="false"
+                  aria-controls="flush-collapseFive"
+                >
+                  <img
+                    id="examination-icon"
+                    class="m-0 me-3 p-2"
+                    src="img/usg-icon.svg"
+                  />
+                  Cennik badań USG
                 </button>
               </h2>
-              <div id="flush-collapseFive" class="accordion-collapse collapse"
-                aria-labelledby="flush-headingFive">
+              <div
+                id="flush-collapseFive"
+                class="accordion-collapse collapse"
+                aria-labelledby="flush-headingFive"
+              >
                 <div class="accordion-body">
                   <table class="table">
                     <thead class="table-head align-middle">
@@ -667,7 +898,9 @@
                         <td class="text-center">170,00 zł</td>
                       </tr>
                       <tr>
-                        <th scope="row">Doppler tętnic biodrowych i aorty brzusznej</th>
+                        <th scope="row">
+                          Doppler tętnic biodrowych i aorty brzusznej
+                        </th>
                         <td class="text-center">200,00 zł</td>
                       </tr>
                       <tr>
@@ -720,24 +953,31 @@
               </div>
             </div>
             <!-- USG prices -->
-
           </div>
-
         </div>
       </section>
     </main>
 
     <!-- Footer -->
     <footer>
-      <section id="footer-1" style="width: 100vw;">
-        <div class="row m-0 d-flex align-items-center" style="width: 100vw;" id="row-footer">
+      <section id="footer-1" style="width: 100vw">
+        <div
+          class="row m-0 d-flex align-items-center"
+          style="width: 100vw"
+          id="row-footer"
+        >
           <!-- Left footer - OmegaSkan logo + navigation -->
           <div class="col-lg-4 p-5 text-center">
             <div id="left-footer">
               <!-- OmegaSkan logo -->
               <div>
-                <a class="px-2" href="index.html" >
-                  <img src="img/omegaskan_baner2.png" alt="OmegaSkan Logo" id="omegaskan-banner-footer" loading="lazy"/>
+                <a class="px-2" href="index.html">
+                  <img
+                    src="img/omegaskan_baner2.png"
+                    alt="OmegaSkan Logo"
+                    id="omegaskan-banner-footer"
+                    loading="lazy"
+                  />
                 </a>
               </div>
 
@@ -745,25 +985,31 @@
               <div>
                 <ul class="navbar-nav me-auto mb-lg-0" id="navigation-2">
                   <li class="nav-item" id="nav-item-2">
-                    <a class="nav-link active" aria-current="page" id="nav-link-2" href="index.html">Strona główna</a>
+                    <a
+                      class="nav-link active"
+                      aria-current="page"
+                      id="nav-link-2"
+                      href="index.html"
+                      >Strona główna</a
+                    >
                   </li>
-                  <span>
-                    |
-                  </span>
+                  <span> | </span>
                   <li class="nav-item" id="nav-item-2">
-                    <a class="nav-link" id="nav-link-2" href="badania.html">Badania</a>
+                    <a class="nav-link" id="nav-link-2" href="badania.html"
+                      >Badania</a
+                    >
                   </li>
-                  <span>
-                    |
-                  </span>
+                  <span> | </span>
                   <li class="nav-item" id="nav-item-2">
-                    <a class="nav-link" id="nav-link-2" href="cennik.html">Cennik</a>
+                    <a class="nav-link" id="nav-link-2" href="cennik.html"
+                      >Cennik</a
+                    >
                   </li>
-                  <span>
-                    |
-                  </span>
+                  <span> | </span>
                   <li class="nav-item" id="nav-item-2">
-                    <a class="nav-link" id="nav-link-2" href="kontakt.html">Kontakt</a>
+                    <a class="nav-link" id="nav-link-2" href="kontakt.html"
+                      >Kontakt</a
+                    >
                   </li>
                 </ul>
               </div>
@@ -772,20 +1018,34 @@
           <!-- Left footer - banner + navigation + copyright -->
 
           <!-- Center footer - address + phone number + email address -->
-            <div class="col-lg-4 p-5 text-left align-items-center d-flex justify-content-center">
-              <div id="center-footer">
-                <!-- Phone number -->
+          <div
+            class="col-lg-4 p-5 text-left align-items-center d-flex justify-content-center"
+          >
+            <div id="center-footer">
+              <!-- Phone number -->
               <div class="d-flex align-items-center my-3 resp-font-2">
                 <i class="fas fa-phone fa-fw"></i>
-                <p style="display: inline-block; margin-left: 15px; margin-bottom: 0px;">
-                  <span style="display: block">666 666 666</span> 
+                <p
+                  style="
+                    display: inline-block;
+                    margin-left: 15px;
+                    margin-bottom: 0px;
+                  "
+                >
+                  <span style="display: block">666 666 666</span>
                 </p>
               </div>
 
               <!-- Email address -->
               <div class="d-flex align-items-center my-3 resp-font-2">
                 <i class="fas fa-envelope fa-fw"></i>
-                <p style="display: inline-block; margin-left: 15px; margin-bottom: 0px;">
+                <p
+                  style="
+                    display: inline-block;
+                    margin-left: 15px;
+                    margin-bottom: 0px;
+                  "
+                >
                   <span style="display: block">omegaskandiagnostyka@op.pl</span>
                 </p>
               </div>
@@ -793,22 +1053,40 @@
               <!-- Address -->
               <div class="d-flex align-items-center my-3 resp-font-2">
                 <i class="fas fa-map fa-fw"></i>
-                <p style="display: inline-block; margin-left: 15px; margin-bottom: 0px;">
-                  <span style="display: block;">ul. Chmielna 4</span> 
-                  <span style="display: block;">Lublin 20-079</span> 
+                <p
+                  style="
+                    display: inline-block;
+                    margin-left: 15px;
+                    margin-bottom: 0px;
+                  "
+                >
+                  <span style="display: block">ul. Chmielna 4</span>
+                  <span style="display: block">Lublin 20-079</span>
                 </p>
               </div>
 
               <!-- Opening hours -->
               <div class="d-flex align-items-center my-3 resp-font-2">
                 <i class="fas fa-clock fa-fw"></i>
-                <p style="display: inline-block; margin-left: 15px; margin-bottom: 0px;">
-                  <span style="display: block">poniedziałek - piątek:
-                  <span style="margin-left: 15px;">7.00 - 19.00</span></span> 
-                  <span style="display: block">sobota:
-                  <span style="margin-left: 15px;">8.00 - 16.00</span></span> 
-                  <span style="display: block">niedziela:
-                  <span style="margin-left: 15px;">nieczynne</span></span> 
+                <p
+                  style="
+                    display: inline-block;
+                    margin-left: 15px;
+                    margin-bottom: 0px;
+                  "
+                >
+                  <span style="display: block"
+                    >poniedziałek - piątek:
+                    <span style="margin-left: 15px">7.00 - 19.00</span></span
+                  >
+                  <span style="display: block"
+                    >sobota:
+                    <span style="margin-left: 15px">8.00 - 16.00</span></span
+                  >
+                  <span style="display: block"
+                    >niedziela:
+                    <span style="margin-left: 15px">nieczynne</span></span
+                  >
                 </p>
               </div>
             </div>
@@ -816,27 +1094,39 @@
           <!-- Center footer - address + phone number + email address -->
 
           <!-- Right footer - About OmegaSkan + social media links -->
-          <div class="col-lg-4 p-5 text-center align-items-center d-flex justify-content-center">
+          <div
+            class="col-lg-4 p-5 text-center align-items-center d-flex justify-content-center"
+          >
             <div id="right-footer">
               <!-- About OmegaSkan -->
               <h3 class="pb-3" id="heading-font">
                 Twoje profesjonalne centrum diagnostyczne
               </h3>
               <p>
-                W OmegaSkan wykonujemy kompleksowe usługi diagnostyczne - w tym tomografię komputerową, rezonans magnetyczny, rentgenografię, ultrasonografię oraz mammografię
+                W OmegaSkan wykonujemy kompleksowe usługi diagnostyczne - w tym
+                tomografię komputerową, rezonans magnetyczny, rentgenografię,
+                ultrasonografię oraz mammografię
               </p>
 
               <!-- Social media links -->
               <ul class="navbar-nav flex-row justify-content-center">
                 <li class="nav-item">
-                  <a class="nav-link px-2 fs-3" id="nav-link-3" href="https://www.instagram.com"
-                    target="_blank">
+                  <a
+                    class="nav-link px-2 fs-3"
+                    id="nav-link-3"
+                    href="https://www.instagram.com"
+                    target="_blank"
+                  >
                     <i class="fab fa-instagram"></i>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link px-2 fs-3" id="nav-link-3" href="https://www.facebook.com"
-                    target="_blank">
+                  <a
+                    class="nav-link px-2 fs-3"
+                    id="nav-link-3"
+                    href="https://www.facebook.com"
+                    target="_blank"
+                  >
                     <i class="fab fa-facebook-f"></i>
                   </a>
                 </li>
@@ -845,21 +1135,23 @@
           </div>
           <!-- Right footer - About us + social media links -->
 
-        <!-- Copyright and author -->
+          <!-- Copyright and author -->
           <div>
-            <p class="text-center text-muted">OmegaSkan © 2026 <br> Autor: Ireneusz Siwek </p>
+            <p class="text-center text-muted">
+              OmegaSkan © 2026 <br />
+              Autor: Ireneusz Siwek
+            </p>
           </div>
-        <!-- Copyright and author -->
+          <!-- Copyright and author -->
         </div>
       </section>
     </footer>
     <!-- Footer -->
-
 
     <!-- MDB -->
     <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Custom scripts -->
     <script type="text/javascript"></script>
   </body>
-<!------------------------------------------------------------>
+  <!------------------------------------------------------------>
 </html>
