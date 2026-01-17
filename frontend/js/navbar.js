@@ -22,7 +22,7 @@ function highlightActiveLink() {
   }
 
   // Znajdź wszystkie linki w nawigacji
-  const navLinks = document.querySelectorAll('.nav-link');
+  const navLinks = document.querySelectorAll('#navigation-1 .nav-link');
 
   navLinks.forEach(link => {
     // Pobierz href linku (np. "cennik.html")
