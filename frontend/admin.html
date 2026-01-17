@@ -1,0 +1,48 @@
+<div class="container my-5 p-5 border">
+  <h3>Panel Admina: Dodaj Pracownika</h3>
+  <form id="addWorkerForm">
+    <div class="mb-3">
+      <label>Imię i Nazwisko</label>
+      <input type="text" name="name" class="form-control" required />
+    </div>
+    
+    <div class="mb-3">
+      <label>Rola (np. Lekarz radiolog)</label>
+      <input type="text" name="role" class="form-control" required />
+    </div>
+
+    <div class="mb-3">
+      <label>Typ Pracownika</label>
+      <select name="type" class="form-select">
+        <option value="doctor">Lekarz (Doktor)</option>
+        <option value="technician">Elektroradiolog</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label>Zdjęcie</label>
+      <input type="file" name="image" class="form-control" accept="image/*" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Wyślij do bazy</button>
+  </form>
+</div>
+
+<script>
+  document.getElementById('addWorkerForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+
+    const res = await fetch('/api/workers', {
+      method: 'POST',
+      body: formData
+    });
+
+    if (res.ok) {
+      alert('Pracownik dodany!');
+      e.target.reset();
+    } else {
+      alert('Błąd dodawania');
+    }
+  });
+</script>

@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="css/mdb.min.css" />
     <!-- Script -->
     <script src="js/index.js"></script>
+    <script src="js/navbar-loader.js"></script>
   </head>
   <!------------------------------------------------------------>
 
@@ -32,140 +33,7 @@
   <body>
     <header>
       <!-- Navbar -->
-      <nav class="navbar navbar-expand-md fixed-top navbar-scroll shadow-0">
-        <!-- Container wrapper -->
-        <div class="container-fluid">
-          <!-- Navbar brand -->
-          <a class="navbar-brand px-2" href="index.html">
-            <img
-              src="img/icon.svg"
-              height="30"
-              alt="OmegaSkan Logo"
-              loading="lazy"
-            />
-          </a>
-
-          <!-- Toggle button -->
-          <button
-            class="navbar-toggler ps-0"
-            type="button"
-            data-mdb-toggle="collapse"
-            data-mdb-target="#navbarOmegaSkan"
-            aria-controls="navbarOmegaSkan"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="d-flex justify-content-start align-items-center">
-              <i class="fas fa-bars"></i>
-            </span>
-          </button>
-
-          <!-- Collapsible wrapper -->
-          <div
-            class="collapse navbar-collapse text-center"
-            id="navbarOmegaSkan"
-          >
-            <!-- Left links -->
-            <ul class="navbar-nav me-auto mb-lg-0 py-2" id="navigation-1">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="index.html"
-                  >Strona główna
-                </a>
-              </li>
-              <!-- Split exam button -->
-              <li class="nav-item">
-                <div class="btn-group">
-                  <button type="button" class="btn">
-                    <a class="nav-link btn-exam" href="badania.html">Badania</a>
-                  </button>
-                  <button
-                    type="button"
-                    class="btn dropdown-toggle dropdown-toggle-split"
-                    data-mdb-toggle="dropdown"
-                    aria-expanded="false"
-                    data-mdb-offset="0,15"
-                  ></button>
-                  <ul class="dropdown-menu">
-                    <li>
-                      <a class="dropdown-item" href="/badania#MRI-section"
-                        >Rezonans magnetyczny</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/badania#CT-section"
-                        >Tomografia komputerowa</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/badania#X-RAY-section"
-                        >Rentgenografia</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/badania#MMG-section"
-                        >Mammografia</a
-                      >
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="/badania#USG-section"
-                        >Ultrasonografia</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="cennik.html">Cennik</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="kontakt.html">Kontakt</a>
-              </li>
-            </ul>
-            <!-- Left links -->
-
-            <!-- Right links -->
-            <ul
-              class="navbar-nav flex-row justify-content-center justify-content-md-end"
-            >
-              <!-- Icons -->
-              <li class="nav-item">
-                <a class="nav-link px-2" href="kontakt.html">
-                  <i class="fas fa-phone"></i>&nbsp;
-                  <samp
-                    class="db-telefon"
-                    style="
-                      color: inherit;
-                      font-weight: inherit;
-                      font-family: inherit;
-                    ">
-                  </samp>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link px-2"
-                  href="https://www.instagram.com"
-                  target="_blank"
-                >
-                  <i class="fab fa-instagram"></i>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link px-2"
-                  href="https://www.facebook.com"
-                  target="_blank"
-                >
-                  <i class="fab fa-facebook-f"></i>
-                </a>
-              </li>
-            </ul>
-            <!-- Right links -->
-          </div>
-          <!-- Collapsible wrapper -->
-        </div>
-        <!-- Container wrapper -->
-      </nav>
+      <div id="navbar-placeholder"></div>
       <!-- Navbar -->
 
       <!-- Background image -->
@@ -322,161 +190,20 @@
             Poznaj naszych lekarzy radiologów
           </h1>
           <!-- Carousel wrapper -->
-          <div
-            id="carouselMaterialStyle"
-            style="width: 100vw"
-            class="carousel slide carousel-fade"
-          >
-            <!-- Indicators -->
-            <div class="carousel-indicators">
-              <button
-                type="button"
-                data-mdb-target="#carouselMaterialStyle"
-                data-mdb-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Slide 1"
-              ></button>
-              <button
-                type="button"
-                data-mdb-target="#carouselMaterialStyle"
-                data-mdb-slide-to="1"
-                aria-label="Slide 2"
-              ></button>
-              <button
-                type="button"
-                data-mdb-target="#carouselMaterialStyle"
-                data-mdb-slide-to="2"
-                aria-label="Slide 3"
-              ></button>
-              <button
-                type="button"
-                data-mdb-target="#carouselMaterialStyle"
-                data-mdb-slide-to="3"
-                aria-label="Slide 4"
-              ></button>
-              <button
-                type="button"
-                data-mdb-target="#carouselMaterialStyle"
-                data-mdb-slide-to="4"
-                aria-label="Slide 5"
-              ></button>
-              <button
-                type="button"
-                data-mdb-target="#carouselMaterialStyle"
-                data-mdb-slide-to="5"
-                aria-label="Slide 6"
-              ></button>
-            </div>
+          <div id="carouselMaterialStyle" style="width: 100vw" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+            <div class="carousel-indicators" id="doctors-indicators"></div>
 
-            <!-- Inner -->
-            <div class="carousel-inner rounded-5 shadow-4-strong">
-              <!-- Single item -->
-              <div class="carousel-item active">
-                <img
-                  src="img/radiologist-1.jpg"
-                  class="d-block w-100"
-                  alt="radiologist"
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Joanna Poznańska</h5>
-                  <p>Lekarz radiolog</p>
-                </div>
+              <div class="carousel-inner rounded-5 shadow-4-strong" id="doctors-inner"></div>
+
+                <button class="carousel-control-prev" type="button" data-mdb-target="#carouselMaterialStyle" data-mdb-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                  </button>
+                <button class="carousel-control-next" type="button" data-mdb-target="#carouselMaterialStyle" data-mdb-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
               </div>
-
-              <!-- Single item -->
-              <div class="carousel-item">
-                <img
-                  src="img/radiologist-2.jpg"
-                  class="d-block w-100"
-                  alt="radiologist"
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Celina Goode</h5>
-                  <p>Lekarz radiolog</p>
-                </div>
-              </div>
-
-              <!-- Single item -->
-              <div class="carousel-item">
-                <img
-                  src="img/radiologist-3.jpg"
-                  class="d-block w-100"
-                  alt="radiologist"
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Albert Wróblewski</h5>
-                  <p>Lekarz radiolog</p>
-                </div>
-              </div>
-
-              <!-- Single item -->
-              <div class="carousel-item">
-                <img
-                  src="img/radiologist-4.jpg"
-                  class="d-block w-100"
-                  alt="radiologist"
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Mikołaj Maciejewski</h5>
-                  <p>Lekarz radiolog</p>
-                </div>
-              </div>
-
-              <!-- Single item -->
-              <div class="carousel-item">
-                <img
-                  src="img/radiologist-5.jpg"
-                  class="d-block w-100"
-                  alt="radiologist"
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Konstanty Kubiak</h5>
-                  <p>Lekarz radiolog</p>
-                </div>
-              </div>
-
-              <!-- Single item -->
-              <div class="carousel-item">
-                <img
-                  src="img/radiologist-6.jpg"
-                  class="d-block w-100"
-                  alt="radiologist"
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Libby Willis</h5>
-                  <p>Lekarz radiolog</p>
-                </div>
-              </div>
-            </div>
-            <!-- Inner -->
-
-            <!-- Controls -->
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-mdb-target="#carouselMaterialStyle"
-              data-mdb-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Previous</span>
-            </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-mdb-target="#carouselMaterialStyle"
-              data-mdb-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
-              <span class="visually-hidden">Next</span>
-            </button>
-          </div>
           <!-- Carousel wrapper -->
         </div>
       </section>
@@ -493,139 +220,17 @@
             Poznaj naszych elektroradiologów
           </h1>
           <!-- Carousel wrapper -->
-          <div
-            id="carouselMaterialStyle2"
-            style="width: 100vw"
-            class="carousel slide carousel-fade"
-          >
-            <!-- Indicators -->
-            <div class="carousel-indicators">
-              <button
-                type="button"
-                data-mdb-target="#carouselMaterialStyle2"
-                data-mdb-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Slide 1"
-              ></button>
-              <button
-                type="button"
-                data-mdb-target="#carouselMaterialStyle2"
-                data-mdb-slide-to="1"
-                aria-label="Slide 2"
-              ></button>
-              <button
-                type="button"
-                data-mdb-target="#carouselMaterialStyle2"
-                data-mdb-slide-to="2"
-                aria-label="Slide 3"
-              ></button>
-              <button
-                type="button"
-                data-mdb-target="#carouselMaterialStyle2"
-                data-mdb-slide-to="3"
-                aria-label="Slide 4"
-              ></button>
-              <button
-                type="button"
-                data-mdb-target="#carouselMaterialStyle2"
-                data-mdb-slide-to="4"
-                aria-label="Slide 5"
-              ></button>
-            </div>
+          <div id="carouselMaterialStyle2" style="width: 100vw" class="carousel slide carousel-fade" data-mdb-ride="carousel">
+            <div class="carousel-indicators" id="techs-indicators"></div>
 
-            <!-- Inner -->
-            <div class="carousel-inner rounded-5 shadow-4-strong">
-              <!-- Single item -->
-              <div class="carousel-item active">
-                <img
-                  src="img/radiology-tech-1.jpg"
-                  class="d-block w-100"
-                  alt="radiology technologist"
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Agnieszka Opalińska</h5>
-                  <p>Elektroradiolog</p>
-                </div>
-              </div>
+            <div class="carousel-inner rounded-5 shadow-4-strong" id="techs-inner"></div>
 
-              <!-- Single item -->
-              <div class="carousel-item">
-                <img
-                  src="img/radiology-tech-2.jpg"
-                  class="d-block w-100"
-                  alt="radiology technologist"
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Monika Zawadzka</h5>
-                  <p>Elektroradiolog</p>
-                </div>
-              </div>
-
-              <!-- Single item -->
-              <div class="carousel-item">
-                <img
-                  src="img/radiology-tech-3.jpg"
-                  class="d-block w-100"
-                  alt="radiology technologist"
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Madyson McKenna</h5>
-                  <p>Elektroradiolog</p>
-                </div>
-              </div>
-
-              <!-- Single item -->
-              <div class="carousel-item">
-                <img
-                  src="img/radiology-tech-4.jpg"
-                  class="d-block w-100"
-                  alt="radiology technologist"
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Damien Hutchinson</h5>
-                  <p>Elektroradiolog</p>
-                </div>
-              </div>
-
-              <!-- Single item -->
-              <div class="carousel-item">
-                <img
-                  src="img/radiology-tech-5.jpg"
-                  class="d-block w-100"
-                  alt="radiology technologist"
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <h5>Trevion Almeida</h5>
-                  <p>Elektroradiolog</p>
-                </div>
-              </div>
-            </div>
-            <!-- Inner -->
-
-            <!-- Controls -->
-            <button
-              class="carousel-control-prev"
-              type="button"
-              data-mdb-target="#carouselMaterialStyle2"
-              data-mdb-slide="prev"
-            >
-              <span
-                class="carousel-control-prev-icon"
-                aria-hidden="true"
-              ></span>
+            <button class="carousel-control-prev" type="button" data-mdb-target="#carouselMaterialStyle2" data-mdb-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Previous</span>
             </button>
-            <button
-              class="carousel-control-next"
-              type="button"
-              data-mdb-target="#carouselMaterialStyle2"
-              data-mdb-slide="next"
-            >
-              <span
-                class="carousel-control-next-icon"
-                aria-hidden="true"
-              ></span>
+            <button class="carousel-control-next" type="button" data-mdb-target="#carouselMaterialStyle2" data-mdb-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
           </div>
