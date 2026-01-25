@@ -120,12 +120,14 @@
 /* Default background image height for devices smaller than 992px */
 #intro-main {
   height: 500px;
+  width: 100%;
 }
 
 /* Background image height for devices larger than 992px */
 @media (min-width: 992px) {
   #intro-main {
     height: 1050px;
+    width: 100%;
   }
 }
 

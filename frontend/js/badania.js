@@ -16,14 +16,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             const sekcja = document.createElement('section');
             sekcja.className = 'section';
             sekcja.id = `${badanie.kod}-section`;
+            sekcja.style.width = '100%';
 
             // Generowanie listy punktów oferty
             const elementyListy = badanie.listaOferty.map(item => `<li>${item}</li>`).join('');
 
             sekcja.innerHTML = `
-                <div class="row m-0 d-flex align-items-center" style="width: 100%">
-                  <div id="exam-icon-heading" class="text-center align-items-center d-flex justify-content-center p-5">
-                    <img id="examination-icon" class="m-0 p-2" src="${badanie.ikona}" alt="${badanie.tytul} ikona" />
+                <div class="row g-0 w-100 align-items-center">
+                  <div id="exam-icon-heading" class="col-12 text-center align-items-center d-flex justify-content-center flex-wrap py-5 px-3 px-md-5">
+                    <img id="examination-icon" class="img-fluid m-0 p-2" src="${badanie.ikona}" alt="${badanie.tytul} ikona" />
                     <h2 id="examination-heading" class="display-4 resp-font-3 m-0 p-2">
                       ${badanie.tytul}
                     </h2>
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                   </div>
 
                   <!-- Kolumna z opisem i ofertą -->
-                  <div class="col-lg-6 p-5">
+                  <div class="col-lg-6 py-5 px-3 px-md-5">
                     <div class="p-1">
                       <div class="my-3">
                         <h2 class="resp-font-4">
