@@ -11,13 +11,14 @@ window.addEventListener("scroll", function () {
   navbar.classList.toggle("navbar-fixed", window.scrollY > 0);
 });
 
-document.addEventListener("DOMContentLoaded", function () {
-  pobierzTresc();
-  pobierzStopka();
+document.addEventListener("DOMContentLoaded", async function () {
   pobierzKontakt();
-  fetchAndRenderCarousel('doctor', 'doctors-indicators', 'doctors-inner', '#carouselMaterialStyle');
-  fetchAndRenderCarousel('technician', 'techs-indicators', 'techs-inner', '#carouselMaterialStyle2');
+  await loadCarousels();
+  pobierzTresc();
 });
+document.addEventListener("navbar-loaded", pobierzKontakt);
+document.addEventListener("footer-loaded", pobierzKontakt);
+document.addEventListener("kontakt-kolumna-loaded", pobierzKontakt);
 
 // Funkcja pomocniczna do tworzenia klas
 function stworzKlase(nazwaKlasy, tekst) {
@@ -43,33 +44,59 @@ async function pobierzTresc() {
       stworzKlase(".db-podtytul", content.podtytul);
       stworzKlase(".db-tresc", content.tresc);
     }
-  } catch (err) {
-    console.error("Błąd pobierania treści:", err);
-  }
-}
 
-// POBIERANIE STOPKI STRONY
-async function pobierzStopka() {
-  try {
-    const response = await fetch("/api/tresci?strona=stopka");
-    const data = await response.json();
-
-    if (data.length > 0 && data[0].footer) {
-      const content = data[0].footer;
-
-      stworzKlase(".footer-tytul", content.tytul);
-      stworzKlase(".footer-tresc", content.tresc);
+    if (data.length > 0 && data[0].karuzele) {
+      const karuzele = data[0].karuzele;
+      stworzKlase(".carousel-title-doctor", karuzele.lekarze);
+      stworzKlase(".carousel-title-technician", karuzele.technicy);
     }
   } catch (err) {
     console.error("Błąd pobierania treści:", err);
   }
 }
 
+// ŁADOWANIE I GENEROWANIE KARUZEL
+async function loadCarousels() {
+  try {
+    const response = await fetch('/carousel-section.html');
+    const template = await response.text();
+    const container = document.getElementById('carousels-placeholder');
+
+    if (!container) return;
+
+    const carouselsConfig = [
+      { type: 'doctor', titleClass: 'carousel-title-doctor' },
+      { type: 'technician', titleClass: 'carousel-title-technician' }
+    ];
+
+    for (const config of carouselsConfig) {
+      // Podmiana placeholderów w szablonie
+      let html = template
+        .replaceAll('{{type}}', config.type)
+        .replaceAll('{{titleClass}}', config.titleClass);
+      
+      // Dodanie do DOM (jako HTML)
+      container.insertAdjacentHTML('beforeend', html);
+
+      // Uruchomienie logiki karuzeli dla nowo dodanego elementu
+      // ID są generowane w szablonie jako: carousel-{type}, indicators-{type}, inner-{type}
+      fetchAndRenderCarousel(config.type, `indicators-${config.type}`, `inner-${config.type}`, `#carousel-${config.type}`);
+    }
+  } catch (err) {
+    console.error("Błąd ładowania szablonu karuzeli:", err);
+  }
+}
+
+let cachedContactData = null;
+
 // POBIERANIE DANYCH KONTAKTOWYCH
 async function pobierzKontakt() {
   try {
-    const response = await fetch("/api/kontakt");
-    const data = await response.json();
+    if (!cachedContactData) {
+      const response = await fetch("/api/kontakt");
+      cachedContactData = await response.json();
+    }
+    const data = cachedContactData;
 
     if (data) {
       stworzKlase(".db-telefon", data.telefon);
@@ -141,7 +168,7 @@ async function fetchAndRenderCarousel(workerType, indicatorsId, innerId, carouse
           alt="${worker.name}"
           style="object-fit: cover; aspect-ratio: 16/9;" 
         />
-        <div class="carousel-caption d-none d-md-block">
+        <div class="carousel-caption d-block">
           <h5>${worker.name}</h5>
           <p>${worker.role}</p>
         </div>

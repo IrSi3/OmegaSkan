@@ -26,10 +26,14 @@ app.use(express.static(frontendPath));
 // Schemat dla Treści Stron
 const trescSchema = new mongoose.Schema({
   strona: String,
-  sekcja: {
+  oNas: {
     tytul: String,
     podtytul: String,
     tresc: String,
+  },
+  karuzele: {
+    lekarze: String,
+    technicy: String
   },
 });
 const Tresc = mongoose.model("Tresc", trescSchema, "pages_content");

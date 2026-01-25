@@ -13,9 +13,11 @@ window.addEventListener("scroll", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function () {
-  pobierzStopka();
   pobierzKontakt();
 });
+document.addEventListener("navbar-loaded", pobierzKontakt);
+document.addEventListener("footer-loaded", pobierzKontakt);
+document.addEventListener("kontakt-kolumna-loaded", pobierzKontakt);
 
 // Funkcja pomocniczna do tworzenia klas
 function stworzKlase(nazwaKlasy, tekst) {
@@ -28,28 +30,16 @@ function stworzKlase(nazwaKlasy, tekst) {
   });
 }
 
-// POBIERANIE STOPKI STRONY
-async function pobierzStopka() {
-  try {
-    const response = await fetch("/api/tresci?strona=stopka");
-    const data = await response.json();
-
-    if (data.length > 0 && data[0].footer) {
-      const content = data[0].footer;
-
-      stworzKlase(".footer-tytul", content.tytul);
-      stworzKlase(".footer-tresc", content.tresc);
-    }
-  } catch (err) {
-    console.error("Błąd pobierania treści:", err);
-  }
-}
+let cachedContactData = null;
 
 // POBIERANIE DANYCH KONTAKTOWYCH
 async function pobierzKontakt() {
   try {
-    const response = await fetch("/api/kontakt");
-    const data = await response.json();
+    if (!cachedContactData) {
+      const response = await fetch("/api/kontakt");
+      cachedContactData = await response.json();
+    }
+    const data = cachedContactData;
 
     if (data) {
       stworzKlase(".db-telefon", data.telefon);
