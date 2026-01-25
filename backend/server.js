@@ -139,38 +139,6 @@ app.get('/api/badania', async (req, res) => {
   }
 });
 
-// Dodaj nowe badanie (z dwoma plikami: ikona i obraz)
-app.post('/api/badania', upload.fields([{ name: 'ikona', maxCount: 1 }, { name: 'obraz', maxCount: 1 }]), async (req, res) => {
-  try {
-    const files = req.files;
-    if (!files || !files['ikona'] || !files['obraz']) {
-      return res.status(400).send('Wymagane są oba pliki: ikona i obraz.');
-    }
-
-    // Konwersja plików na Base64
-    const ikonaBase64 = `data:${files['ikona'][0].mimetype};base64,${files['ikona'][0].buffer.toString('base64')}`;
-    const obrazBase64 = `data:${files['obraz'][0].mimetype};base64,${files['obraz'][0].buffer.toString('base64')}`;
-
-    // Przetwarzanie listy oferty (zakładamy, że przychodzi jako string rozdzielony nowymi liniami)
-    const listaOfertyArray = req.body.listaOferty ? req.body.listaOferty.split('\n').map(item => item.trim()).filter(i => i) : [];
-
-    const noweBadanie = new Badanie({
-      kod: req.body.kod,
-      tytul: req.body.tytul,
-      ikona: ikonaBase64,
-      obraz: obrazBase64,
-      opis: req.body.opis,
-      tytulOferty: req.body.tytulOferty,
-      listaOferty: listaOfertyArray
-    });
-
-    await noweBadanie.save();
-    res.status(201).send('Dodano badanie do bazy!');
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-});
-
 // Pobierz cennik
 app.get('/api/cennik', async (req, res) => {
   try {
@@ -178,36 +146,6 @@ app.get('/api/cennik', async (req, res) => {
     res.json(cennik);
   } catch (err) {
     res.status(500).json({ message: err.message });
-  }
-});
-
-// Dodaj kategorię cennika
-app.post('/api/cennik', upload.single('ikona'), async (req, res) => {
-  try {
-    if (!req.file) return res.status(400).send('Wymagana jest ikona.');
-
-    const ikonaBase64 = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
-    
-    // Parsowanie listy badań (format: "Nazwa badania Cena")
-    const badaniaRaw = req.body.badania || "";
-    const badaniaList = badaniaRaw.split('\n').filter(line => line.trim() !== '').map(line => {
-        const trimmedLine = line.trim();
-        // Regex łapie wszystko do ostatniej spacji jako nazwę, a resztę (cyfry i ew. zł) jako cenę
-        const match = trimmedLine.match(/(.*)\s+(\d[\d\s.,]*\s*zł?)$/);
-        return match ? { nazwa: match[1].trim(), cena: match[2].trim() } : { nazwa: trimmedLine, cena: "" };
-    });
-
-    const nowyCennik = new Cennik({
-      kategoria: req.body.kategoria,
-      kod: req.body.kod || Math.random().toString(36).substr(2, 5), // Generuj kod jeśli brak
-      ikona: ikonaBase64,
-      badania: badaniaList
-    });
-
-    await nowyCennik.save();
-    res.status(201).send('Dodano kategorię cennika!');
-  } catch (err) {
-    res.status(500).send(err.message);
   }
 });
 
@@ -257,3 +195,66 @@ app.post('/api/workers', upload.single('image'), async (req, res) => {
     res.status(500).send(err.message);
   }
 });
+
+// Dodaj nowe badanie (z dwoma plikami: ikona i obraz)
+app.post('/api/badania', upload.fields([{ name: 'ikona', maxCount: 1 }, { name: 'obraz', maxCount: 1 }]), async (req, res) => {
+  try {
+    const files = req.files;
+    if (!files || !files['ikona'] || !files['obraz']) {
+      return res.status(400).send('Wymagane są oba pliki: ikona i obraz.');
+    }
+
+    // Konwersja plików na Base64
+    const ikonaBase64 = `data:${files['ikona'][0].mimetype};base64,${files['ikona'][0].buffer.toString('base64')}`;
+    const obrazBase64 = `data:${files['obraz'][0].mimetype};base64,${files['obraz'][0].buffer.toString('base64')}`;
+
+    // Przetwarzanie listy oferty (zakładamy, że przychodzi jako string rozdzielony nowymi liniami)
+    const listaOfertyArray = req.body.listaOferty ? req.body.listaOferty.split('\n').map(item => item.trim()).filter(i => i) : [];
+
+    const noweBadanie = new Badanie({
+      kod: req.body.kod,
+      tytul: req.body.tytul,
+      ikona: ikonaBase64,
+      obraz: obrazBase64,
+      opis: req.body.opis,
+      tytulOferty: req.body.tytulOferty,
+      listaOferty: listaOfertyArray
+    });
+
+    await noweBadanie.save();
+    res.status(201).send('Dodano badanie do bazy!');
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+// Dodaj kategorię cennika
+app.post('/api/cennik', upload.single('ikona'), async (req, res) => {
+  try {
+    if (!req.file) return res.status(400).send('Wymagana jest ikona.');
+
+    const ikonaBase64 = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+    
+    // Parsowanie listy badań (format: "Nazwa badania Cena")
+    const badaniaRaw = req.body.badania || "";
+    const badaniaList = badaniaRaw.split('\n').filter(line => line.trim() !== '').map(line => {
+        const trimmedLine = line.trim();
+        // Regex łapie wszystko do ostatniej spacji jako nazwę, a resztę (cyfry i ew. zł) jako cenę
+        const match = trimmedLine.match(/(.*)\s+(\d[\d\s.,]*\s*zł?)$/);
+        return match ? { nazwa: match[1].trim(), cena: match[2].trim() } : { nazwa: trimmedLine, cena: "" };
+    });
+
+    const nowyCennik = new Cennik({
+      kategoria: req.body.kategoria,
+      kod: req.body.kod || Math.random().toString(36).substr(2, 5), // Generuj kod jeśli brak
+      ikona: ikonaBase64,
+      badania: badaniaList
+    });
+
+    await nowyCennik.save();
+    res.status(201).send('Dodano kategorię cennika!');
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
