@@ -35,6 +35,10 @@ const trescSchema = new mongoose.Schema({
     lekarze: String,
     technicy: String
   },
+   footer: {
+    tytul: String,
+    tresc: String,
+  },
 });
 const Tresc = mongoose.model("Tresc", trescSchema, "pages_content");
 
@@ -65,6 +69,18 @@ const workerSchema = new mongoose.Schema({
   image: String,
 });
 const Worker = mongoose.model("Worker", workerSchema, "worker_info");
+
+// Schemat dla Badań (Examinations)
+const badanieSchema = new mongoose.Schema({
+  kod: String,        // np. 'MRI' - identyfikator sekcji
+  tytul: String,      // np. 'REZONANS MAGNETYCZNY'
+  ikona: String,      // Base64
+  obraz: String,      // Base64
+  opis: String,       // tekst na overlayu zdjęcia
+  tytulOferty: String,// nagłówek listy np. 'W naszej ofercie...'
+  listaOferty: [String] // tablica punktów oferty
+});
+const Badanie = mongoose.model("Badanie", badanieSchema, "badania_info");
 
 // Konfiguracja Multer (do przechowywania pliku w pamięci RAM przed zapisem do bazy)
 const upload = multer({ storage: multer.memoryStorage() });
@@ -104,6 +120,48 @@ app.get('/api/workers', async (req, res) => {
   }
 });
 
+// Pobierz listę badań
+app.get('/api/badania', async (req, res) => {
+  try {
+    const badania = await Badanie.find({});
+    res.json(badania);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Dodaj nowe badanie (z dwoma plikami: ikona i obraz)
+app.post('/api/badania', upload.fields([{ name: 'ikona', maxCount: 1 }, { name: 'obraz', maxCount: 1 }]), async (req, res) => {
+  try {
+    const files = req.files;
+    if (!files || !files['ikona'] || !files['obraz']) {
+      return res.status(400).send('Wymagane są oba pliki: ikona i obraz.');
+    }
+
+    // Konwersja plików na Base64
+    const ikonaBase64 = `data:${files['ikona'][0].mimetype};base64,${files['ikona'][0].buffer.toString('base64')}`;
+    const obrazBase64 = `data:${files['obraz'][0].mimetype};base64,${files['obraz'][0].buffer.toString('base64')}`;
+
+    // Przetwarzanie listy oferty (zakładamy, że przychodzi jako string rozdzielony nowymi liniami)
+    const listaOfertyArray = req.body.listaOferty ? req.body.listaOferty.split('\n').map(item => item.trim()).filter(i => i) : [];
+
+    const noweBadanie = new Badanie({
+      kod: req.body.kod,
+      tytul: req.body.tytul,
+      ikona: ikonaBase64,
+      obraz: obrazBase64,
+      opis: req.body.opis,
+      tytulOferty: req.body.tytulOferty,
+      listaOferty: listaOfertyArray
+    });
+
+    await noweBadanie.save();
+    res.status(201).send('Dodano badanie do bazy!');
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
 app.get("/", (req, res) => {
   res.sendFile(path.join(frontendPath, "index.html"));
 });
@@ -118,6 +176,10 @@ app.get("/kontakt", (req, res) => {
 
 app.get("/badania", (req, res) => {
   res.sendFile(path.join(frontendPath, "badania.html"));
+});
+
+app.get("/admin", (req, res) => {
+  res.sendFile(path.join(frontendPath, "admin.html"));
 });
 
 app.listen(PORT, () => {

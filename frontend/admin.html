@@ -1,48 +1,142 @@
-<div class="container my-5 p-5 border">
-  <h3>Panel Admina: Dodaj Pracownika</h3>
-  <form id="addWorkerForm">
-    <div class="mb-3">
-      <label>Imię i Nazwisko</label>
-      <input type="text" name="name" class="form-control" required />
-    </div>
-    
-    <div class="mb-3">
-      <label>Rola (np. Lekarz radiolog)</label>
-      <input type="text" name="role" class="form-control" required />
-    </div>
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administratora - OmegaSkan</title>
+    <link rel="stylesheet" href="css/mdb.min.css" />
+    <style>
+        body { background-color: #f4f4f4; padding: 20px; }
+        .admin-container { max-width: 800px; margin: 0 auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .section-divider { margin: 40px 0; border-top: 2px solid #eee; }
+    </style>
+</head>
+<body>
 
-    <div class="mb-3">
-      <label>Typ Pracownika</label>
-      <select name="type" class="form-select">
-        <option value="doctor">Lekarz (Doktor)</option>
-        <option value="technician">Elektroradiolog</option>
-      </select>
-    </div>
+<div class="admin-container">
+    <!-- Sekcja Pracowników -->
+    <h2 class="mb-4 text-center">Dodaj Pracownika (Karuzela)</h2>
+    <form id="addWorkerForm" class="mb-5">
+        <div class="form-outline mb-4">
+            <input type="text" name="name" id="workerName" class="form-control" required />
+            <label class="form-label" for="workerName">Imię i Nazwisko</label>
+        </div>
+        
+        <div class="form-outline mb-4">
+            <input type="text" name="role" id="workerRole" class="form-control" required />
+            <label class="form-label" for="workerRole">Rola (np. Lekarz radiolog)</label>
+        </div>
 
-    <div class="mb-3">
-      <label>Zdjęcie</label>
-      <input type="file" name="image" class="form-control" accept="image/*" required />
-    </div>
+        <div class="mb-4">
+            <label class="form-label">Typ Pracownika</label>
+            <select name="type" class="form-select">
+                <option value="doctor">Lekarz (Doktor)</option>
+                <option value="technician">Elektroradiolog</option>
+            </select>
+        </div>
 
-    <button type="submit" class="btn btn-primary">Wyślij do bazy</button>
-  </form>
+        <div class="mb-4">
+            <label class="form-label">Zdjęcie</label>
+            <input type="file" name="image" class="form-control" accept="image/*" required />
+        </div>
+
+        <button type="submit" class="btn btn-secondary btn-block">Dodaj Pracownika</button>
+    </form>
+
+    <div class="section-divider"></div>
+
+    <!-- Sekcja Badań -->
+    <h2 class="mb-4 text-center">Dodaj Nowe Badanie</h2>
+    <form id="badanieForm">
+        <!-- Kod i Tytuł -->
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" id="kod" name="kod" class="form-control" required />
+                    <label class="form-label" for="kod">Kod (np. MRI)</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" id="tytul" name="tytul" class="form-control" required />
+                    <label class="form-label" for="tytul">Tytuł Badania</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Opis -->
+        <div class="form-outline mb-4">
+            <textarea class="form-control" id="opis" name="opis" rows="4" required></textarea>
+            <label class="form-label" for="opis">Opis (na zdjęciu)</label>
+        </div>
+
+        <!-- Oferta -->
+        <div class="form-outline mb-4">
+            <input type="text" id="tytulOferty" name="tytulOferty" class="form-control" required />
+            <label class="form-label" for="tytulOferty">Nagłówek Oferty</label>
+        </div>
+
+        <div class="form-outline mb-4">
+            <textarea class="form-control" id="listaOferty" name="listaOferty" rows="5" required></textarea>
+            <label class="form-label" for="listaOferty">Lista punktów (każdy punkt w nowej linii)</label>
+        </div>
+
+        <!-- Pliki -->
+        <div class="mb-3">
+            <label for="ikona" class="form-label">Ikona (SVG/PNG)</label>
+            <input class="form-control" type="file" id="ikona" name="ikona" required>
+        </div>
+
+        <div class="mb-4">
+            <label for="obraz" class="form-label">Zdjęcie Główne</label>
+            <input class="form-control" type="file" id="obraz" name="obraz" required>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">Dodaj Badanie</button>
+    </form>
+    <div id="message" class="text-center"></div>
 </div>
 
+<script type="text/javascript" src="js/mdb.min.js"></script>
 <script>
-  document.getElementById('addWorkerForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-
-    const res = await fetch('/api/workers', {
-      method: 'POST',
-      body: formData
+    // Inicjalizacja inputów MDB
+    document.querySelectorAll('.form-outline').forEach((formOutline) => {
+      new mdb.Input(formOutline).init();
     });
 
-    if (res.ok) {
-      alert('Pracownik dodany!');
-      e.target.reset();
-    } else {
-      alert('Błąd dodawania');
-    }
-  });
+    // Obsługa formularza pracowników
+    document.getElementById('addWorkerForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        
+        try {
+            const res = await fetch('/api/workers', { method: 'POST', body: formData });
+            if (res.ok) { alert('Pracownik dodany!'); e.target.reset(); }
+            else { alert('Błąd dodawania'); }
+        } catch (err) { console.error(err); alert('Błąd połączenia'); }
+    });
+
+    // Obsługa formularza badań
+    document.getElementById('badanieForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const messageDiv = document.getElementById('message');
+        const formData = new FormData(e.target);
+
+        try {
+            const response = await fetch('/api/badania', { method: 'POST', body: formData });
+            if (response.ok) {
+                messageDiv.innerHTML = '<div class="alert alert-success">Badanie dodane pomyślnie!</div>';
+                e.target.reset();
+            } else {
+                const text = await response.text();
+                messageDiv.innerHTML = `<div class="alert alert-danger">Błąd: ${text}</div>`;
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            messageDiv.innerHTML = '<div class="alert alert-danger">Wystąpił błąd połączenia.</div>';
+        }
+    });
 </script>
+</body>
+</html>
