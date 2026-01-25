@@ -13,24 +13,23 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 function highlightActiveLink() {
-  // Pobierz aktualną ścieżkę, np. "/cennik.html" lub "/"
   let currentPath = window.location.pathname;
 
-  // Jeśli adres to samo "/", traktuj to jak "index.html"
-  if (currentPath === '/' || currentPath === '') {
-    currentPath = 'index.html';
-  }
+  // Normalizacja ścieżki z adresu URL (tak jak w stopce)
+  let pathName = currentPath.split('/').pop().split('.')[0];
+  if (pathName === '') pathName = 'index';
 
-  // Znajdź wszystkie linki w nawigacji
   const navLinks = document.querySelectorAll('#navigation-1 .nav-link');
 
   navLinks.forEach(link => {
-    // Pobierz href linku (np. "cennik.html")
     const href = link.getAttribute('href');
+    if (!href) return;
 
-    // Sprawdź czy href zawiera się w aktualnej ścieżce
-    // Używamy includes, żeby złapać dopasowanie nawet jak będzie "/cennik" bez .html
-    if (href && currentPath.includes(href.replace('/', ''))) {
+    // Normalizacja linku z menu
+    let hrefName = href.split('/').pop().split('.')[0];
+    if (hrefName === '') hrefName = 'index';
+
+    if (pathName === hrefName) {
       link.classList.add('active');
       
       // Specjalna obsługa dla przycisku "Badania" (który jest wewnątrz buttona)
