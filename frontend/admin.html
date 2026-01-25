@@ -95,6 +95,45 @@
         <!-- Submit -->
         <button type="submit" class="btn btn-primary btn-block mb-4">Dodaj Badanie</button>
     </form>
+
+    <div class="section-divider"></div>
+
+    <!-- Sekcja Cennika -->
+    <h2 class="mb-4 text-center">Dodaj Kategorię Cennika</h2>
+    <form id="cennikForm">
+        <div class="row mb-4">
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" id="kategoriaCennik" name="kategoria" class="form-control" required />
+                    <label class="form-label" for="kategoriaCennik">Nazwa Kategorii (np. Cennik badań MR)</label>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-outline">
+                    <input type="text" id="kodCennik" name="kod" class="form-control" required />
+                    <label class="form-label" for="kodCennik">Kod (np. MRI - unikalny)</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label class="form-label">Ikona Kategorii</label>
+            <input type="file" name="ikona" class="form-control" accept="image/*" required />
+        </div>
+
+        <div class="form-outline mb-4">
+            <textarea class="form-control" id="badaniaLista" name="badania" rows="10" required></textarea>
+            <label class="form-label" for="badaniaLista">Lista badań (Format: "Nazwa badania 000,00 zł" w nowej linii)</label>
+        </div>
+        <div class="form-text mb-4">
+            Przykład:<br>
+            Badanie MR głowy (bez kontrastu) 530,00 zł<br>
+            Badanie MR naczyń mózgowych 650,00 zł
+        </div>
+
+        <button type="submit" class="btn btn-success btn-block mb-4">Dodaj do Cennika</button>
+    </form>
+
     <div id="message" class="text-center"></div>
 </div>
 
@@ -135,6 +174,27 @@
         } catch (error) {
             console.error('Error:', error);
             messageDiv.innerHTML = '<div class="alert alert-danger">Wystąpił błąd połączenia.</div>';
+        }
+    });
+
+    // Obsługa formularza cennika
+    document.getElementById('cennikForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const messageDiv = document.getElementById('message');
+        const formData = new FormData(e.target);
+
+        try {
+            const response = await fetch('/api/cennik', { method: 'POST', body: formData });
+            if (response.ok) {
+                messageDiv.innerHTML = '<div class="alert alert-success">Kategoria cennika dodana!</div>';
+                e.target.reset();
+            } else {
+                const text = await response.text();
+                messageDiv.innerHTML = `<div class="alert alert-danger">Błąd: ${text}</div>`;
+            }
+        } catch (error) {
+            console.error(error);
+            messageDiv.innerHTML = '<div class="alert alert-danger">Błąd połączenia.</div>';
         }
     });
 </script>

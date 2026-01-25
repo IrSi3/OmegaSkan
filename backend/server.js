@@ -82,6 +82,15 @@ const badanieSchema = new mongoose.Schema({
 });
 const Badanie = mongoose.model("Badanie", badanieSchema, "badania_info");
 
+// Schemat dla Cennika
+const cennikSchema = new mongoose.Schema({
+  kategoria: String,  // np. 'Cennik badań MR'
+  kod: String,        // np. 'MRI' - unikalny identyfikator do HTML
+  ikona: String,      // Base64
+  badania: [{ nazwa: String, cena: String }]
+});
+const Cennik = mongoose.model("Cennik", cennikSchema, "cennik_info");
+
 // Konfiguracja Multer (do przechowywania pliku w pamięci RAM przed zapisem do bazy)
 const upload = multer({ storage: multer.memoryStorage() });
 
@@ -157,6 +166,46 @@ app.post('/api/badania', upload.fields([{ name: 'ikona', maxCount: 1 }, { name: 
 
     await noweBadanie.save();
     res.status(201).send('Dodano badanie do bazy!');
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+});
+
+// Pobierz cennik
+app.get('/api/cennik', async (req, res) => {
+  try {
+    const cennik = await Cennik.find({});
+    res.json(cennik);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Dodaj kategorię cennika
+app.post('/api/cennik', upload.single('ikona'), async (req, res) => {
+  try {
+    if (!req.file) return res.status(400).send('Wymagana jest ikona.');
+
+    const ikonaBase64 = `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`;
+    
+    // Parsowanie listy badań (format: "Nazwa badania Cena")
+    const badaniaRaw = req.body.badania || "";
+    const badaniaList = badaniaRaw.split('\n').filter(line => line.trim() !== '').map(line => {
+        const trimmedLine = line.trim();
+        // Regex łapie wszystko do ostatniej spacji jako nazwę, a resztę (cyfry i ew. zł) jako cenę
+        const match = trimmedLine.match(/(.*)\s+(\d[\d\s.,]*\s*zł?)$/);
+        return match ? { nazwa: match[1].trim(), cena: match[2].trim() } : { nazwa: trimmedLine, cena: "" };
+    });
+
+    const nowyCennik = new Cennik({
+      kategoria: req.body.kategoria,
+      kod: req.body.kod || Math.random().toString(36).substr(2, 5), // Generuj kod jeśli brak
+      ikona: ikonaBase64,
+      badania: badaniaList
+    });
+
+    await nowyCennik.save();
+    res.status(201).send('Dodano kategorię cennika!');
   } catch (err) {
     res.status(500).send(err.message);
   }

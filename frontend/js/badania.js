@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                             </p>
                           </div>
                           <a class="btn btn-outline-light btn-lg my-2 mx-2" href="kontakt" role="button">Kontakt</a>
-                          <a class="btn btn-outline-light btn-lg my-2 mx-2" href="cennik" role="button">Cennik</a>
+                          <a class="btn btn-outline-light btn-lg my-2 mx-2" href="cennik#${badanie.kod}" role="button">Cennik</a>
                         </div>
                       </div>
                     </div>
