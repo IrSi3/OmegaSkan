@@ -73,6 +73,26 @@ document.addEventListener('DOMContentLoaded', async () => {
             kontener.appendChild(sekcja);
         });
 
+        if (window.location.hash) {
+            const targetId = window.location.hash.substring(1); // Pobierz ID z adresu (np. "MRI-section")
+            const targetElement = document.getElementById(targetId);
+
+            if (targetElement) {
+                // Krótkie opóźnienie, aby upewnić się, że elementy są w pełni wyrenderowane
+                setTimeout(() => {
+                    const navbar = document.querySelector('.navbar');
+                    const navbarHeight = navbar ? navbar.offsetHeight : 0; // Wysokość paska nawigacji
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.scrollY - navbarHeight; // Uwzględnij navbar
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }, 100);
+            }
+        }
+
     } catch (error) {
         console.error('Błąd pobierania danych:', error);
     }
