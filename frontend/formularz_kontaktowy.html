@@ -1,0 +1,22 @@
+<form id="contact-form">
+  <div class="form-outline mb-4">
+    <input type="text" id="form-name" class="form-control" required />
+    <label class="form-label" for="form-name">Imię i nazwisko</label>
+  </div>
+
+  <div class="form-outline mb-4">
+    <input type="email" id="form-email" class="form-control" required />
+    <label class="form-label" for="form-email">Adres e-mail</label>
+  </div>
+
+  <div class="form-outline mb-4">
+    <textarea class="form-control" id="form-message" rows="4" required></textarea>
+    <label class="form-label" for="form-message">Wiadomość</label>
+  </div>
+
+  <div class="mb-4 d-flex justify-content-center">
+     <div id="recaptcha-container"></div>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-block mb-4">Wyślij wiadomość</button>
+</form>

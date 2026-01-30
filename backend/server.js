@@ -3,6 +3,8 @@ const mongoose = require("mongoose");
 const multer = require('multer');
 const cors = require("cors");
 require("dotenv").config();
+const nodemailer = require('nodemailer');
+const axios = require('axios');
 const path = require("path");
 const tempPath = path.join(__dirname, "../");
 const frontendPath = path.join(tempPath, "/frontend");
@@ -258,3 +260,58 @@ app.post('/api/cennik', upload.single('ikona'), async (req, res) => {
   }
 });
 
+// --- Endpoint: Formularz Kontaktowy (Onet) ---
+app.post('/api/contact/send', async (req, res) => {
+  const { name, email, message, captchaToken } = req.body;
+
+  // 1. Walidacja danych
+  if (!name || !email || !message || !captchaToken) {
+    return res.status(400).json({ message: 'Wypełnij wszystkie pola i zaznacz "Nie jestem robotem".' });
+  }
+
+  try {
+    // 2. Weryfikacja reCAPTCHA w Google
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`;
+    const captchaRes = await axios.post(verifyUrl);
+
+    if (!captchaRes.data.success) {
+      return res.status(400).json({ message: 'Błąd weryfikacji Captcha. Spróbuj ponownie.' });
+    }
+
+    // 3. Konfiguracja Transportera dla Onetu (op.pl)
+    const transporter = nodemailer.createTransport({
+      host: process.env.EMAIL_HOST, // smtp.poczta.onet.pl
+      port: process.env.EMAIL_PORT, // 465
+      secure: true, // true dla portu 465
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    // 4. Treść wiadomości
+    const mailOptions = {
+      from: `"Formularz OmegaSkan" <${process.env.EMAIL_USER}>`, // Musi być zgodne z kontem, z którego wysyłasz
+      to: process.env.EMAIL_TARGET, // Twój główny adres
+      replyTo: email, // Adres pacjenta (żeby "Odpowiedz" szło do niego)
+      subject: `Nowa wiadomość od: ${name}`,
+      text: `Otrzymałeś nową wiadomość ze strony internetowej.\n\nImię i nazwisko: ${name}\nEmail pacjenta: ${email}\n\nTreść wiadomości:\n${message}`,
+      html: `
+        <h3>Nowa wiadomość ze strony OmegaSkan</h3>
+        <p><strong>Od:</strong> ${name} (${email})</p>
+        <p><strong>Treść:</strong></p>
+        <blockquote style="background: #f9f9f9; padding: 10px; border-left: 3px solid #ccc;">
+          ${message.replace(/\n/g, '<br>')}
+        </blockquote>
+      `
+    };
+
+    // 5. Wyślij
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: 'Wiadomość została wysłana pomyślnie!' });
+
+  } catch (error) {
+    console.error('Błąd wysyłania maila:', error);
+    res.status(500).json({ message: 'Wystąpił błąd serwera podczas wysyłania wiadomości.' });
+  }
+});

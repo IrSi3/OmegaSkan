@@ -30,6 +30,7 @@
     <script src="js/navbar.js"></script>
     <script src="js/footer.js"></script>
     <script src="js/kontakt-kolumna.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=captchaLoaded&render=explicit" async defer></script>
   </head>
   <!------------------------------------------------------------>
 
@@ -70,75 +71,13 @@
             <h1 class="pb-4 text-center" id="heading-font">
               Skontaktuj się z nami!
             </h1>
-            <form id="contact_form" name="contact_form" method="post">
-              <div class="mb-5 row flex-column flex-lg-row">
-                <div class="col">
-                  <label>Twoje imię</label>
-                  <input
-                    type="text"
-                    required
-                    maxlength="25"
-                    class="form-control"
-                    id="first_name"
-                    name="first_name"
-                    placeholder="Imię"
-                  />
+            <div id="formularz-placeholder">
+                <div class="text-center">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
                 </div>
-                <div class="col">
-                  <label>Twoje nazwisko</label>
-                  <input
-                    type="text"
-                    required
-                    maxlength="25"
-                    class="form-control"
-                    id="last_name"
-                    name="last_name"
-                    placeholder="Nazwisko"
-                  />
-                </div>
-              </div>
-              <div class="mb-5 row flex-column flex-lg-row">
-                <div class="col">
-                  <label for="email_addr">Adres e-mail</label>
-                  <input
-                    type="email"
-                    required
-                    maxlength="35"
-                    class="form-control"
-                    id="email_addr"
-                    name="email"
-                    placeholder="adres@email.com"
-                  />
-                </div>
-                <div class="col">
-                  <label for="phone_input">Numer telefonu</label>
-                  <input
-                    type="tel"
-                    required
-                    maxlength="9"
-                    class="form-control"
-                    id="phone_input"
-                    name="Phone"
-                    placeholder="XXX-XXX-XXX"
-                  />
-                </div>
-              </div>
-              <div class="mb-5">
-                <label for="message">Wiadomość</label>
-                <textarea
-                  class="form-control"
-                  required
-                  maxlength="500"
-                  id="message"
-                  name="message"
-                  rows="9"
-                  placeholder="Tutaj wpisz wiadomość (do 500 znaków)"
-                ></textarea>
-              </div>
-              <button type="submit" class="btn px-4 btn-lg" id="button">
-                Wyślij
-              </button>
-            </form>
+            </div>
           </div>
           <!-- Contact form column-->
 
