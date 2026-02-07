@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+  pobierzIkone();
   // 1. Pobierz plik navbar.html
   fetch('/navbar.html')
     .then(response => response.text())
@@ -38,4 +39,22 @@ function highlightActiveLink() {
       }
     }
   });
+}
+
+// Pobieranie tla i baneru
+async function pobierzIkone() {
+  try {
+    const response = await fetch("/api/tresci?strona=zdjecia");
+    const data = await response.json();
+
+    if (data.length > 0 && data[0].svg) {
+      const content = data[0].svg;
+
+      const ikona = document.getElementById("omegaskan-ikona");
+        if (ikona) ikona.src = content.ikona;
+    }
+  }
+  catch (err) {
+    console.error("Błąd pobierania obrazów:", err);
+  }
 }

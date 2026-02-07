@@ -27,7 +27,7 @@ function renderCaptcha() {
 
 document.addEventListener('DOMContentLoaded', () => {
     loadContactForm();
-    // Tutaj możesz też wywołać pobierzKontakt() jeśli masz taką funkcję do danych adresowych
+    pobierzObrazy();
 });
 
 async function loadContactForm() {
@@ -155,4 +155,25 @@ function setupFormSubmit() {
             submitBtn.disabled = false;
         }
     });
+}
+
+// Pobieranie tla
+async function pobierzObrazy() {
+  try {
+    const response = await fetch("/api/tresci?strona=zdjecia");
+    const data = await response.json();
+
+    if (data.length > 0 && data[0].jpg) {
+      const content = data[0].jpg;
+      
+      const tlo = document.getElementById("intro-main");
+        if (tlo){
+          tlo.style.backgroundImage = `url(${content.tlo})`;
+          tlo.style.backgroundSize = 'cover';
+        }
+    }
+  }
+  catch (err) {
+    console.error("Błąd pobierania obrazów:", err);
+  }
 }

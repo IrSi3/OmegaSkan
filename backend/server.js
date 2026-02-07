@@ -37,10 +37,18 @@ const trescSchema = new mongoose.Schema({
     lekarze: String,
     technicy: String
   },
-   footer: {
+  footer: {
     tytul: String,
     tresc: String,
   },
+  jpg: {
+    tlo: String,
+    baner1: String,
+    baner2: String,
+  },
+  svg:{
+    ikona: String,
+  }
 });
 const Tresc = mongoose.model("Tresc", trescSchema, "pages_content");
 

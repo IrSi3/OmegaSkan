@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    pobierzObrazy();
+
     const accordionContainer = document.getElementById('accordion-exam-prices');
     if (!accordionContainer) return;
 
@@ -106,3 +108,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         accordionContainer.innerHTML = '<p class="text-center text-danger">Nie udało się załadować cennika.</p>';
     }
 });
+
+// Pobieranie tla
+async function pobierzObrazy() {
+  try {
+    const response = await fetch("/api/tresci?strona=zdjecia");
+    const data = await response.json();
+
+    if (data.length > 0 && data[0].jpg) {
+      const content = data[0].jpg;
+      
+      const tlo = document.getElementById("intro-main");
+        if (tlo){
+          tlo.style.backgroundImage = `url(${content.tlo})`;
+          tlo.style.backgroundSize = 'cover';
+        }
+    }
+  }
+  catch (err) {
+    console.error("Błąd pobierania obrazów:", err);
+  }
+}

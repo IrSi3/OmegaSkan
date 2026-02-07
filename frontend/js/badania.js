@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', async () => {
+    pobierzObrazy();
     const kontener = document.getElementById('kontener-badan');
     if (!kontener) return;
 
@@ -97,3 +98,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         console.error('Błąd pobierania danych:', error);
     }
 });
+
+// Pobieranie tla
+async function pobierzObrazy() {
+  try {
+    const response = await fetch("/api/tresci?strona=zdjecia");
+    const data = await response.json();
+
+    if (data.length > 0 && data[0].jpg) {
+      const content = data[0].jpg;
+      
+      const tlo = document.getElementById("intro-main");
+        if (tlo){
+          tlo.style.backgroundImage = `url(${content.tlo})`;
+          tlo.style.backgroundSize = 'cover';
+        }
+    }
+  }
+  catch (err) {
+    console.error("Błąd pobierania obrazów:", err);
+  }
+}

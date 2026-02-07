@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", async function () {
   await loadCarousels();
   pobierzTresc();
+  pobierzObrazy();
 });
 
 // POBIERANIE TREŚCI STRONY
@@ -24,6 +25,30 @@ async function pobierzTresc() {
     }
   } catch (err) {
     console.error("Błąd pobierania treści:", err);
+  }
+}
+
+// Pobieranie tla i baneru
+async function pobierzObrazy() {
+  try {
+    const response = await fetch("/api/tresci?strona=zdjecia");
+    const data = await response.json();
+
+    if (data.length > 0 && data[0].jpg) {
+      const content = data[0].jpg;
+
+      const baner = document.getElementById("omegaskan-banner");
+        if (baner) baner.src = content.baner1;
+
+      const tlo = document.getElementById("intro-main");
+        if (tlo){
+          tlo.style.backgroundImage = `url(${content.tlo})`;
+          tlo.style.backgroundSize = 'cover';
+        }
+    }
+  }
+  catch (err) {
+    console.error("Błąd pobierania obrazów:", err);
   }
 }
 

@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
+  pobierzBaner();
+
   // 1. Pobierz plik footer.html
   fetch('/footer.html')
     .then(response => response.text())
@@ -55,5 +57,22 @@ async function pobierzStopka() {
     }
   } catch (err) {
     console.error("Błąd pobierania treści stopki:", err);
+  }
+}
+
+async function pobierzBaner() {
+  try {
+    const response = await fetch("/api/tresci?strona=zdjecia");
+    const data = await response.json();
+
+    if (data.length > 0 && data[0].jpg) {
+      const content = data[0].jpg;
+
+      const baner = document.getElementById("omegaskan-banner-footer");
+        if (baner) baner.src = content.baner2;
+    }
+  }
+  catch (err) {
+    console.error("Błąd pobierania obrazów:", err);
   }
 }
