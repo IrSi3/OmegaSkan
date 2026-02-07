@@ -15,6 +15,7 @@ const PORT = process.env.PORT;
 // Middleware
 app.use(cors());
 app.use(express.json());
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // Połączenie z MongoDB Atlas
 const uri = process.env.MONGO_URI;
