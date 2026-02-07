@@ -18,7 +18,7 @@ document.addEventListener("navbar-loaded", pobierzKontakt);
 document.addEventListener("footer-loaded", pobierzKontakt);
 document.addEventListener("kontakt-kolumna-loaded", pobierzKontakt);
 
-// Funkcja pomocniczna do tworzenia klas (używana globalnie)
+// Funkcja pomocnicza do wstawiania tekstu
 function stworzKlase(nazwaKlasy, tekst) {
   const elementy = document.querySelectorAll(nazwaKlasy);
   elementy.forEach((el) => {

@@ -1,11 +1,9 @@
-// Zmienna globalna do przechowywania ID widgetu Captcha
 let recaptchaWidgetId;
 
 // Funkcja callback uruchamiana przez Google API po załadowaniu skryptu
 function captchaLoaded() {
-    console.log("Biblioteka reCAPTCHA załadowana.");
     // Jeśli formularz już jest w HTML, renderujemy captchę. 
-    // Jeśli nie (bo fetch jeszcze trwa), renderowanie nastąpi w funkcji initForm.
+    // Jeśli nie (bo fetch jeszcze trwa), renderowanie nastąpi w funkcji loadContactForm.
     const container = document.getElementById('recaptcha-container');
     if (container && !container.hasChildNodes()) {
         renderCaptcha();
@@ -14,7 +12,6 @@ function captchaLoaded() {
 
 function renderCaptcha() {
     try {
-        // KLUCZ WITRYNY (SITE KEY)
         const siteKey = "6LcPh1ssAAAAAA_c86VoAgY2nimWWcsvjCIGUs6Q"; 
         
         recaptchaWidgetId = grecaptcha.render('recaptcha-container', {
@@ -35,26 +32,26 @@ async function loadContactForm() {
     if (!placeholder) return;
 
     try {
-        // 1. Pobierz plik HTML formularza
+        // Pobierz plik HTML formularza
         const response = await fetch('formularz_kontaktowy.html');
         if (!response.ok) throw new Error('Nie udało się pobrać formularza');
         
         const html = await response.text();
         placeholder.innerHTML = html;
-        //Formatowanie numeru telefony
+        // Formatowanie numeru telefonu
         setupPhoneFormatting();
 
-        // 2. Zainicjuj inputy MDB (animacje etykiet)
+        // Zainicjuj inputy MDB (animacje etykiet)
         document.querySelectorAll('.form-outline').forEach((formOutline) => {
             new mdb.Input(formOutline).init();
         });
 
-        // 3. Renderuj Captchę (jeśli biblioteka Google jest gotowa)
+        // Renderuj Captchę (jeśli biblioteka Google jest gotowa)
         if (typeof grecaptcha !== 'undefined' && grecaptcha.render) {
             renderCaptcha();
         }
 
-        // 4. Podepnij obsługę wysyłania
+        // Podepnij obsługę wysyłania
         setupFormSubmit();
 
     } catch (error) {
@@ -69,13 +66,13 @@ function setupPhoneFormatting() {
     if (!phoneInput) return;
 
     phoneInput.addEventListener('input', (e) => {
-        // 1. Usuń wszystko co nie jest cyfrą
+        // Usuń wszystko co nie jest cyfrą
         let value = e.target.value.replace(/\D/g, '');
         
-        // 2. Ogranicz do 9 cyfr
+        // Ogranicz do 9 cyfr
         value = value.substring(0, 9);
         
-        // 3. Dodaj myślniki (format XXX-XXX-XXX)
+        // Dodaj myślniki (format XXX-XXX-XXX)
         let formattedValue = "";
         if (value.length > 0) {
             formattedValue = value.substring(0, 3);
@@ -127,7 +124,7 @@ function setupFormSubmit() {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ 
-                    name: `${firstName} ${lastName}`, // Łączymy w jedno 'name' dla backendu lub zmieniamy backend
+                    name: `${firstName} ${lastName}`,
                     firstName, 
                     lastName, 
                     email, 

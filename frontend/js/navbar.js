@@ -1,14 +1,17 @@
 document.addEventListener("DOMContentLoaded", function() {
   pobierzIkone();
-  // 1. Pobierz plik navbar.html
+  // Pobierz plik navbar.html
   fetch('/navbar.html')
     .then(response => response.text())
     .then(data => {
-      // 2. Wstaw go do placeholder'a
+      // Wstaw go do placeholder'a
       document.getElementById('navbar-placeholder').innerHTML = data;
 
-      // 3. Uruchom logikę "Active" (podświetlanie)
+      // Uruchom logikę "Active" (podświetlanie)
       highlightActiveLink();
+
+      // Poinformuj resztę aplikacji, że navbar jest gotowy (dla main.js -> pobierzKontakt)
+      document.dispatchEvent(new Event("navbar-loaded"));
     })
     .catch(error => console.error('Błąd ładowania nawigacji:', error));
 });
@@ -41,7 +44,7 @@ function highlightActiveLink() {
   });
 }
 
-// Pobieranie tla i baneru
+// Pobieranie ikony
 async function pobierzIkone() {
   try {
     const response = await fetch("/api/tresci?strona=zdjecia");
