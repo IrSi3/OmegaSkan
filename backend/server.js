@@ -332,10 +332,36 @@ app.put('/api/images', basicAuth, upload.fields([
     const files = req.files || {};
     const updates = {};
 
-    if (files['tlo']) updates['jpg.tlo'] = '/uploads/img/' + files['tlo'][0].filename;
-    if (files['baner1']) updates['jpg.baner1'] = '/uploads/img/' + files['baner1'][0].filename;
-    if (files['baner2']) updates['jpg.baner2'] = '/uploads/img/' + files['baner2'][0].filename;
-    if (files['ikona']) updates['svg.ikona'] = '/uploads/img/' + files['ikona'][0].filename;
+    const currentData = await Tresc.findOne({ strona: 'zdjecia' });
+
+    if (files['tlo']) {
+      if (currentData && currentData.jpg && currentData.jpg.tlo) {
+        const oldPath = path.join(__dirname, currentData.jpg.tlo);
+        if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+      }
+      updates['jpg.tlo'] = '/uploads/img/' + files['tlo'][0].filename;
+    }
+    if (files['baner1']) {
+      if (currentData && currentData.jpg && currentData.jpg.baner1) {
+        const oldPath = path.join(__dirname, currentData.jpg.baner1);
+        if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+      }
+      updates['jpg.baner1'] = '/uploads/img/' + files['baner1'][0].filename;
+    }
+    if (files['baner2']) {
+      if (currentData && currentData.jpg && currentData.jpg.baner2) {
+        const oldPath = path.join(__dirname, currentData.jpg.baner2);
+        if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+      }
+      updates['jpg.baner2'] = '/uploads/img/' + files['baner2'][0].filename;
+    }
+    if (files['ikona']) {
+      if (currentData && currentData.svg && currentData.svg.ikona) {
+        const oldPath = path.join(__dirname, currentData.svg.ikona);
+        if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+      }
+      updates['svg.ikona'] = '/uploads/img/' + files['ikona'][0].filename;
+    }
 
     const result = await Tresc.findOneAndUpdate(
       { strona: 'zdjecia' },
@@ -398,6 +424,11 @@ app.put('/api/workers/:id', basicAuth, upload.single('image'), async (req, res) 
 
     // Jeśli przesłano nowe zdjęcie, zaktualizuj ścieżkę
     if (req.file) {
+      const worker = await Worker.findById(id);
+      if (worker && worker.image) {
+        const oldPath = path.join(__dirname, worker.image);
+        if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+      }
       updates.image = '/uploads/pracownicy/' + req.file.filename;
     }
 
@@ -472,12 +503,22 @@ app.put('/api/badania/:id', basicAuth, upload.fields([{ name: 'ikona', maxCount:
       listaOferty: req.body.listaOferty ? req.body.listaOferty.split('\n').map(item => item.trim()).filter(i => i) : []
     };
 
+    const badanie = await Badanie.findById(id);
+
     // Jeśli przesłano nową ikonę
     if (files['ikona']) {
+      if (badanie && badanie.ikona) {
+        const oldPath = path.join(__dirname, badanie.ikona);
+        if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+      }
       updates.ikona = '/uploads/badania/' + files['ikona'][0].filename;
     }
     // Jeśli przesłano nowy obraz
     if (files['obraz']) {
+      if (badanie && badanie.obraz) {
+        const oldPath = path.join(__dirname, badanie.obraz);
+        if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+      }
       updates.obraz = '/uploads/badania/' + files['obraz'][0].filename;
     }
 
@@ -551,6 +592,11 @@ app.put('/api/cennik/:id', basicAuth, upload.single('ikona'), async (req, res) =
 
     // Jeśli przesłano nową ikonę
     if (req.file) {
+      const cennik = await Cennik.findById(id);
+      if (cennik && cennik.ikona) {
+        const oldPath = path.join(__dirname, cennik.ikona);
+        if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+      }
       updates.ikona = '/uploads/cennik/' + req.file.filename;
     }
 
