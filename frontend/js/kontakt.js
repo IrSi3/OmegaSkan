@@ -41,6 +41,8 @@ async function loadContactForm() {
         
         const html = await response.text();
         placeholder.innerHTML = html;
+        //Formatowanie numeru telefony
+        setupPhoneFormatting();
 
         // 2. Zainicjuj inputy MDB (animacje etykiet)
         // Musimy to zrobić ręcznie, bo HTML został dodany po załadowaniu strony
@@ -62,6 +64,34 @@ async function loadContactForm() {
     }
 }
 
+// Funkcja do formatowania numeru
+function setupPhoneFormatting() {
+    const phoneInput = document.getElementById('form-phone');
+    if (!phoneInput) return;
+
+    phoneInput.addEventListener('input', (e) => {
+        // 1. Usuń wszystko co nie jest cyfrą
+        let value = e.target.value.replace(/\D/g, '');
+        
+        // 2. Ogranicz do 9 cyfr
+        value = value.substring(0, 9);
+        
+        // 3. Dodaj myślniki (format XXX-XXX-XXX)
+        let formattedValue = "";
+        if (value.length > 0) {
+            formattedValue = value.substring(0, 3);
+        }
+        if (value.length >= 4) {
+            formattedValue += '-' + value.substring(3, 6);
+        }
+        if (value.length >= 7) {
+            formattedValue += '-' + value.substring(6, 9);
+        }
+        
+        e.target.value = formattedValue;
+    });
+}
+
 function setupFormSubmit() {
     const contactForm = document.getElementById('contact-form');
     if (!contactForm) return;
@@ -69,11 +99,13 @@ function setupFormSubmit() {
     contactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        const name = document.getElementById('form-name').value;
+        // Pobieranie nowych pól
+        const firstName = document.getElementById('form-first-name').value;
+        const lastName = document.getElementById('form-last-name').value;
         const email = document.getElementById('form-email').value;
+        const phone = document.getElementById('form-phone').value;
         const message = document.getElementById('form-message').value;
         
-        // Pobierz token z wyrenderowanego widgetu
         let captchaToken = null;
         try {
             captchaToken = grecaptcha.getResponse(recaptchaWidgetId);
@@ -86,7 +118,7 @@ function setupFormSubmit() {
             return;
         }
 
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const submitBtn = document.getElementById('button');
         const originalBtnText = submitBtn.innerText;
         submitBtn.innerText = "Wysyłanie...";
         submitBtn.disabled = true;
@@ -95,7 +127,15 @@ function setupFormSubmit() {
             const response = await fetch('/api/contact/send', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, email, message, captchaToken })
+                body: JSON.stringify({ 
+                    name: `${firstName} ${lastName}`, // Łączymy w jedno 'name' dla backendu lub zmieniamy backend
+                    firstName, 
+                    lastName, 
+                    email, 
+                    phone, 
+                    message, 
+                    captchaToken 
+                })
             });
 
             const result = await response.json();
@@ -103,7 +143,7 @@ function setupFormSubmit() {
             if (response.ok) {
                 alert(result.message);
                 contactForm.reset();
-                grecaptcha.reset(recaptchaWidgetId); // Reset captchy
+                grecaptcha.reset(recaptchaWidgetId);
             } else {
                 alert("Błąd: " + result.message);
             }

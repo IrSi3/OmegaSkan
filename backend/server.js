@@ -260,17 +260,18 @@ app.post('/api/cennik', upload.single('ikona'), async (req, res) => {
   }
 });
 
-// --- Endpoint: Formularz Kontaktowy (Onet) ---
+// --- Endpoint: Formularz Kontaktowy ---
 app.post('/api/contact/send', async (req, res) => {
-  const { name, email, message, captchaToken } = req.body;
+  // Wyciągamy nowe pola przesłane z frontendu (js/kontakt.js)
+  const { firstName, lastName, email, phone, message, captchaToken } = req.body;
 
-  // 1. Walidacja danych
-  if (!name || !email || !message || !captchaToken) {
+  // 1. Walidacja danych - sprawdzamy nowe pola
+  if (!firstName || !lastName || !email || !phone || !message || !captchaToken) {
     return res.status(400).json({ message: 'Wypełnij wszystkie pola i zaznacz "Nie jestem robotem".' });
   }
 
   try {
-    // 2. Weryfikacja reCAPTCHA w Google
+    // 2. Weryfikacja reCAPTCHA (bez zmian)
     const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`;
     const captchaRes = await axios.post(verifyUrl);
 
@@ -278,31 +279,38 @@ app.post('/api/contact/send', async (req, res) => {
       return res.status(400).json({ message: 'Błąd weryfikacji Captcha. Spróbuj ponownie.' });
     }
 
-    // 3. Konfiguracja Transportera dla Onetu (op.pl)
+    // 3. Konfiguracja Transportera (wykorzystuje Twoje zmienne z .env)
     const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST, // smtp.poczta.onet.pl
-      port: process.env.EMAIL_PORT, // 465
-      secure: true, // true dla portu 465
+      host: process.env.EMAIL_HOST,
+      port: process.env.EMAIL_PORT,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
       }
     });
 
-    // 4. Treść wiadomości
+    // 4. Treść wiadomości - tutaj konfigurujesz wygląd maila
     const mailOptions = {
-      from: `"Formularz OmegaSkan" <${process.env.EMAIL_USER}>`, // Musi być zgodne z kontem, z którego wysyłasz
-      to: process.env.EMAIL_TARGET, // Twój główny adres
-      replyTo: email, // Adres pacjenta (żeby "Odpowiedz" szło do niego)
-      subject: `Nowa wiadomość od: ${name}`,
-      text: `Otrzymałeś nową wiadomość ze strony internetowej.\n\nImię i nazwisko: ${name}\nEmail pacjenta: ${email}\n\nTreść wiadomości:\n${message}`,
+      from: `"Formularz OmegaSkan" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_TARGET,
+      replyTo: email,
+      subject: `Nowa wiadomość od: ${firstName} ${lastName}`,
+      text: `Otrzymałeś nową wiadomość.\n\nImię: ${firstName}\nNazwisko: ${lastName}\nEmail: ${email}\nTelefon: ${phone}\n\nTreść:\n${message}`,
       html: `
-        <h3>Nowa wiadomość ze strony OmegaSkan</h3>
-        <p><strong>Od:</strong> ${name} (${email})</p>
-        <p><strong>Treść:</strong></p>
-        <blockquote style="background: #f9f9f9; padding: 10px; border-left: 3px solid #ccc;">
-          ${message.replace(/\n/g, '<br>')}
-        </blockquote>
+        <div style="font-family: sans-serif; max-width: 600px; border: 1px solid #ddd; padding: 20px;">
+          <h2 style="color: #007bff;">Nowa wiadomość ze strony OmegaSkan</h2>
+          <p><strong>Dane pacjenta:</strong></p>
+          <ul>
+            <li><strong>Imię i nazwisko:</strong> ${firstName} ${lastName}</li>
+            <li><strong>Adres e-mail:</strong> ${email}</li>
+            <li><strong>Numer telefonu:</strong> ${phone}</li>
+          </ul>
+          <p><strong>Treść wiadomości:</strong></p>
+          <div style="background: #f9f9f9; padding: 15px; border-left: 4px solid #007bff;">
+            ${message.replace(/\n/g, '<br>')}
+          </div>
+        </div>
       `
     };
 
