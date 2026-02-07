@@ -65,8 +65,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             accordionContainer.insertAdjacentHTML('beforeend', itemHtml);
         });
 
-        // Re-inicjalizacja komponentów MDB po dodaniu dynamicznego HTML (jeśli wymagane)
-        // W przypadku MDB5 zwykle data-attributes wystarczą, ale warto sprawdzić.
         document.querySelectorAll('.accordion-button').forEach(button => {
              new mdb.Collapse(document.getElementById(button.getAttribute('data-mdb-target').substring(1)), {
                  toggle: false

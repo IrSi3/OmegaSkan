@@ -14,7 +14,7 @@ function captchaLoaded() {
 
 function renderCaptcha() {
     try {
-        // TU WPISZ SWÓJ KLUCZ WITRYNY (SITE KEY)
+        // KLUCZ WITRYNY (SITE KEY)
         const siteKey = "6LcPh1ssAAAAAA_c86VoAgY2nimWWcsvjCIGUs6Q"; 
         
         recaptchaWidgetId = grecaptcha.render('recaptcha-container', {
@@ -45,7 +45,6 @@ async function loadContactForm() {
         setupPhoneFormatting();
 
         // 2. Zainicjuj inputy MDB (animacje etykiet)
-        // Musimy to zrobić ręcznie, bo HTML został dodany po załadowaniu strony
         document.querySelectorAll('.form-outline').forEach((formOutline) => {
             new mdb.Input(formOutline).init();
         });

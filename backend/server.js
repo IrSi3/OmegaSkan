@@ -17,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 // Połączenie z MongoDB Atlas
-const uri = process.env.MONGO_URI; // To zdefiniujesz w pliku .env
+const uri = process.env.MONGO_URI;
 mongoose
   .connect(uri, { dbName: "omegaskan_db" })
   .then(() => console.log("Połączono z MongoDB Atlas"))
@@ -82,21 +82,21 @@ const Worker = mongoose.model("Worker", workerSchema, "worker_info");
 
 // Schemat dla Badań (Examinations)
 const badanieSchema = new mongoose.Schema({
-  kod: String,        // np. 'MRI' - identyfikator sekcji
-  tytul: String,      // np. 'REZONANS MAGNETYCZNY'
-  ikona: String,      // Base64
-  obraz: String,      // Base64
-  opis: String,       // tekst na overlayu zdjęcia
-  tytulOferty: String,// nagłówek listy np. 'W naszej ofercie...'
-  listaOferty: [String] // tablica punktów oferty
+  kod: String,    
+  tytul: String,    
+  ikona: String,    
+  obraz: String,    
+  opis: String,     
+  tytulOferty: String,
+  listaOferty: [String] 
 });
 const Badanie = mongoose.model("Badanie", badanieSchema, "badania_info");
 
 // Schemat dla Cennika
 const cennikSchema = new mongoose.Schema({
-  kategoria: String,  // np. 'Cennik badań MR'
-  kod: String,        // np. 'MRI' - unikalny identyfikator do HTML
-  ikona: String,      // Base64
+  kategoria: String, 
+  kod: String,       
+  ikona: String,   
   badania: [{ nazwa: String, cena: String }]
 });
 const Cennik = mongoose.model("Cennik", cennikSchema, "cennik_info");
@@ -184,6 +184,71 @@ app.listen(PORT, () => {
 });
 
 
+// --- Endpoint: Formularz Kontaktowy ---
+app.post('/api/contact/send', async (req, res) => {
+  // Wyciągamy nowe pola przesłane z frontendu (js/kontakt.js)
+  const { firstName, lastName, email, phone, message, captchaToken } = req.body;
+
+  // 1. Walidacja danych
+  if (!firstName || !lastName || !email || !phone || !message || !captchaToken) {
+    return res.status(400).json({ message: 'Wypełnij wszystkie pola i zaznacz "Nie jestem robotem".' });
+  }
+
+  try {
+    // 2. Weryfikacja reCAPTCHA 
+    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`;
+    const captchaRes = await axios.post(verifyUrl);
+
+    if (!captchaRes.data.success) {
+      return res.status(400).json({ message: 'Błąd weryfikacji Captcha. Spróbuj ponownie.' });
+    }
+
+    // 3. Konfiguracja Transportera
+    const transporter = nodemailer.createTransport({
+      host: process.env.EMAIL_HOST,
+      port: process.env.EMAIL_PORT,
+      secure: true,
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      }
+    });
+
+    // 4. Treść wiadomości
+    const mailOptions = {
+      from: `"Formularz OmegaSkan" <${process.env.EMAIL_USER}>`,
+      to: process.env.EMAIL_TARGET,
+      replyTo: email,
+      subject: `Nowa wiadomość od: ${firstName} ${lastName}`,
+      text: `Otrzymałeś nową wiadomość.\n\nImię: ${firstName}\nNazwisko: ${lastName}\nEmail: ${email}\nTelefon: ${phone}\n\nTreść:\n${message}`,
+      html: `
+        <div style="font-family: sans-serif; max-width: 600px; border: 1px solid #ddd; padding: 20px;">
+          <h2 style="color: #007bff;">Nowa wiadomość ze strony OmegaSkan</h2>
+          <p><strong>Dane pacjenta:</strong></p>
+          <ul>
+            <li><strong>Imię i nazwisko:</strong> ${firstName} ${lastName}</li>
+            <li><strong>Adres e-mail:</strong> ${email}</li>
+            <li><strong>Numer telefonu:</strong> ${phone}</li>
+          </ul>
+          <p><strong>Treść wiadomości:</strong></p>
+          <div style="background: #f9f9f9; padding: 15px; border-left: 4px solid #007bff;">
+            ${message.replace(/\n/g, '<br>')}
+          </div>
+        </div>
+      `
+    };
+
+    // 5. Wyślij
+    await transporter.sendMail(mailOptions);
+    res.status(200).json({ message: 'Wiadomość została wysłana pomyślnie!' });
+
+  } catch (error) {
+    console.error('Błąd wysyłania maila:', error);
+    res.status(500).json({ message: 'Wystąpił błąd serwera podczas wysyłania wiadomości.' });
+  }
+});
+
+
 // Dodawanie TYMCZASOWE
 app.post('/api/workers', upload.single('image'), async (req, res) => {
   try {
@@ -265,69 +330,5 @@ app.post('/api/cennik', upload.single('ikona'), async (req, res) => {
     res.status(201).send('Dodano kategorię cennika!');
   } catch (err) {
     res.status(500).send(err.message);
-  }
-});
-
-// --- Endpoint: Formularz Kontaktowy ---
-app.post('/api/contact/send', async (req, res) => {
-  // Wyciągamy nowe pola przesłane z frontendu (js/kontakt.js)
-  const { firstName, lastName, email, phone, message, captchaToken } = req.body;
-
-  // 1. Walidacja danych - sprawdzamy nowe pola
-  if (!firstName || !lastName || !email || !phone || !message || !captchaToken) {
-    return res.status(400).json({ message: 'Wypełnij wszystkie pola i zaznacz "Nie jestem robotem".' });
-  }
-
-  try {
-    // 2. Weryfikacja reCAPTCHA (bez zmian)
-    const verifyUrl = `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${captchaToken}`;
-    const captchaRes = await axios.post(verifyUrl);
-
-    if (!captchaRes.data.success) {
-      return res.status(400).json({ message: 'Błąd weryfikacji Captcha. Spróbuj ponownie.' });
-    }
-
-    // 3. Konfiguracja Transportera (wykorzystuje Twoje zmienne z .env)
-    const transporter = nodemailer.createTransport({
-      host: process.env.EMAIL_HOST,
-      port: process.env.EMAIL_PORT,
-      secure: true,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
-
-    // 4. Treść wiadomości - tutaj konfigurujesz wygląd maila
-    const mailOptions = {
-      from: `"Formularz OmegaSkan" <${process.env.EMAIL_USER}>`,
-      to: process.env.EMAIL_TARGET,
-      replyTo: email,
-      subject: `Nowa wiadomość od: ${firstName} ${lastName}`,
-      text: `Otrzymałeś nową wiadomość.\n\nImię: ${firstName}\nNazwisko: ${lastName}\nEmail: ${email}\nTelefon: ${phone}\n\nTreść:\n${message}`,
-      html: `
-        <div style="font-family: sans-serif; max-width: 600px; border: 1px solid #ddd; padding: 20px;">
-          <h2 style="color: #007bff;">Nowa wiadomość ze strony OmegaSkan</h2>
-          <p><strong>Dane pacjenta:</strong></p>
-          <ul>
-            <li><strong>Imię i nazwisko:</strong> ${firstName} ${lastName}</li>
-            <li><strong>Adres e-mail:</strong> ${email}</li>
-            <li><strong>Numer telefonu:</strong> ${phone}</li>
-          </ul>
-          <p><strong>Treść wiadomości:</strong></p>
-          <div style="background: #f9f9f9; padding: 15px; border-left: 4px solid #007bff;">
-            ${message.replace(/\n/g, '<br>')}
-          </div>
-        </div>
-      `
-    };
-
-    // 5. Wyślij
-    await transporter.sendMail(mailOptions);
-    res.status(200).json({ message: 'Wiadomość została wysłana pomyślnie!' });
-
-  } catch (error) {
-    console.error('Błąd wysyłania maila:', error);
-    res.status(500).json({ message: 'Wystąpił błąd serwera podczas wysyłania wiadomości.' });
   }
 });

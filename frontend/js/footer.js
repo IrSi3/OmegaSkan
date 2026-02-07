@@ -51,7 +51,6 @@ async function pobierzStopka() {
 
     if (data.length > 0 && data[0].footer) {
       const content = data[0].footer;
-      // Funkcja stworzKlase jest dostępna globalnie z main.js
       stworzKlase(".footer-tytul", content.tytul);
       stworzKlase(".footer-tresc", content.tresc);
     }
